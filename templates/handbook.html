@@ -5,654 +5,1266 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ league.name }} — {{ league.season }} Handbook</title>
   <style>
-    /* ── Reset & Base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:      #1a472a;
-      --green-mid:  #2d6a4f;
-      --green-light:#52b788;
-      --gold:       #f4a922;
-      --gold-light: #fde68a;
-      --bg:         #f8f9fa;
-      --surface:    #ffffff;
-      --text:       #1c1c1e;
-      --muted:      #6c757d;
-      --border:     #dee2e6;
-      --radius:     12px;
-      --shadow:     0 2px 12px rgba(0,0,0,.08);
-      --nav-h:      60px;
+      --bg: #08111f;
+      --bg-soft: #101a2d;
+      --surface: rgba(12, 21, 38, 0.82);
+      --surface-strong: #111d33;
+      --surface-light: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f8fbff;
+      --muted: #aab7cf;
+      --gold: #ffbf47;
+      --gold-soft: #ffe3a6;
+      --green: #27c383;
+      --green-soft: rgba(39, 195, 131, 0.12);
+      --blue: #64b5ff;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                   Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(100, 181, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(39, 195, 131, 0.16), transparent 30%),
+        linear-gradient(180deg, #09111f 0%, #07101d 55%, #050a13 100%);
     }
 
-    /* ── Navigation ────────────────────────────────────────────── */
+    a { color: inherit; }
+
+    .shell {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: var(--green);
-      height: var(--nav-h);
+      z-index: 50;
+      background: rgba(6, 12, 22, 0.8);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+      min-height: 72px;
       display: flex;
       align-items: center;
-      padding: 0 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      gap: 1rem;
     }
 
     .nav-brand {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1.05rem;
-      white-space: nowrap;
-      margin-right: auto;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-decoration: none;
+      color: var(--gold);
+      white-space: nowrap;
     }
 
     .nav-links {
+      margin-left: auto;
       display: flex;
-      gap: 0.25rem;
+      gap: 0.4rem;
       list-style: none;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 2px;
+      padding-bottom: 0.25rem;
     }
 
     .nav-links a {
-      color: #d1fae5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.8rem;
-      padding: 0.35rem 0.6rem;
-      border-radius: 6px;
+      font-size: 0.88rem;
       white-space: nowrap;
-      transition: background .2s, color .2s;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
 
-    .nav-links a:hover { background: var(--green-mid); color: #fff; }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
 
-    /* ── Hero ──────────────────────────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
-      color: #fff;
-      text-align: center;
-      padding: 4rem 1.5rem 3rem;
+      padding: 4.5rem 0 2rem;
     }
 
-    .hero-emoji { font-size: 3.5rem; margin-bottom: 0.5rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
+    .hero-card,
+    .hero-panel,
+    .section-card,
+    .dashboard-card,
+    .info-card,
+    .date-card,
+    .member-card,
+    .rule-card,
+    .vote-card,
+    .note-card,
+    .record-card,
+    .draft-pick,
+    .playoff-card,
+    .prize-row,
+    .table-wrap {
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      background:
+        linear-gradient(145deg, rgba(255, 191, 71, 0.14), rgba(39, 195, 131, 0.08)),
+        rgba(9, 18, 33, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -4rem -4rem auto;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 191, 71, 0.25), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gold-soft);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.85rem;
+      max-width: 12ch;
     }
 
     .hero-sub {
-      font-size: 1rem;
-      color: var(--gold-light);
-      margin-top: 0.4rem;
+      max-width: 58ch;
+      color: #d8e4f8;
+      font-size: 1.04rem;
     }
 
     .hero-tagline {
-      font-size: 1.05rem;
-      color: #a7f3d0;
       margin-top: 1rem;
+      color: var(--gold-soft);
       font-style: italic;
+      font-size: 1.02rem;
     }
 
-    .hero-meta {
+    .hero-badges {
+      margin-top: 1.5rem;
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-top: 1.5rem;
     }
 
     .badge {
-      background: rgba(255,255,255,.15);
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 20px;
-      padding: 0.3rem 0.9rem;
-      font-size: 0.85rem;
-      color: #e0fdf4;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 0.9rem;
     }
 
-    /* ── Layout ────────────────────────────────────────────────── */
-    main { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .hero-panel {
+      padding: 1.5rem;
+      background: rgba(11, 18, 31, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
 
-    section { margin-bottom: 2.5rem; }
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .panel-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .panel-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .panel-value {
+      text-align: right;
+      font-weight: 700;
+      max-width: 13rem;
+    }
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    section {
+      margin-top: 1.65rem;
+    }
+
+    .section-shell {
+      padding: 1.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 15, 28, 0.66);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1.35rem;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
 
     .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--green);
-      border-bottom: 3px solid var(--gold);
-      padding-bottom: 0.4rem;
-      margin-bottom: 1.25rem;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      letter-spacing: -0.03em;
     }
 
-    /* ── Cards ─────────────────────────────────────────────────── */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.25rem 1.5rem;
+    .section-copy {
+      color: var(--muted);
+      max-width: 56ch;
     }
 
-    /* ── Members Grid ──────────────────────────────────────────── */
-    .members-grid {
+    .dashboard-grid,
+    .members-grid,
+    .rules-grid,
+    .notes-grid,
+    .records-grid,
+    .dates-grid,
+    .vote-grid,
+    .draft-order {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 1rem;
+    }
+
+    .dashboard-card,
+    .info-card,
+    .member-card,
+    .rule-card,
+    .note-card,
+    .record-card,
+    .date-card,
+    .vote-card,
+    .draft-pick,
+    .playoff-card {
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.2rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .dashboard-card:hover,
+    .info-card:hover,
+    .member-card:hover,
+    .rule-card:hover,
+    .note-card:hover,
+    .record-card:hover,
+    .date-card:hover,
+    .vote-card:hover,
+    .draft-pick:hover,
+    .playoff-card:hover,
+    .prize-row:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 191, 71, 0.26);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .dashboard-label,
+    .card-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.65rem;
+    }
+
+    .dashboard-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .dashboard-detail,
+    .card-detail,
+    .date-detail,
+    .note-body,
+    .vote-notes {
+      color: #d1dbeb;
+      font-size: 0.95rem;
+    }
+
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-card h3,
+    .playoff-card h3,
+    .note-title,
+    .rule-title,
+    .vote-topic,
+    .date-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .info-card ul,
+    .playoff-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+
+    .info-card li,
+    .playoff-card li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .info-card li:last-child,
+    .playoff-card li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label-quiet {
+      color: var(--muted);
+    }
+
+    .value-strong {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .dates-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .date-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .date-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold), var(--green));
+    }
+
+    .date-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 0.8rem;
+    }
+
+    .date-stamp {
+      color: var(--gold-soft);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .date-type,
+    .status-pill,
+    .team-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .date-type {
+      background: rgba(100, 181, 255, 0.14);
+      color: var(--blue);
+      border: 1px solid rgba(100, 181, 255, 0.24);
+    }
+
+    .draft-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .draft-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .draft-order {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .draft-pick {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, rgba(255, 191, 71, 0.12), rgba(100, 181, 255, 0.06));
+    }
+
+    .pick-number {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #09111f;
+      background: linear-gradient(135deg, var(--gold), #ffd97a);
+      flex-shrink: 0;
+    }
+
+    .pick-owner {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .draft-note,
+    .prize-notes {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: rgba(39, 195, 131, 0.1);
+      border: 1px solid rgba(39, 195, 131, 0.18);
+      color: #d9f7eb;
+    }
+
+    .prize-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .prize-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 0.75rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .prize-place { font-weight: 700; }
+    .prize-desc { color: var(--muted); }
+    .prize-amt { font-size: 1.2rem; font-weight: 800; color: var(--gold); }
+
+    .rules-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rule-list {
+      list-style: none;
+      display: grid;
       gap: 0.75rem;
+      margin-top: 0.95rem;
+    }
+
+    .rule-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: #dbe5f5;
+    }
+
+    .rule-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .vote-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vote-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 0.7rem;
+    }
+
+    .vote-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .status-pill {
+      background: rgba(39, 195, 131, 0.14);
+      color: #89ecbb;
+      border: 1px solid rgba(39, 195, 131, 0.22);
+    }
+
+    .vote-controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 1rem 0 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .vote-select {
+      min-width: 220px;
+      appearance: none;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      padding: 0.8rem 0.95rem;
+      font: inherit;
+    }
+
+    .vote-count {
+      padding: 0.65rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 191, 71, 0.12);
+      border: 1px solid rgba(255, 191, 71, 0.18);
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .vote-meta {
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .members-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .member-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem;
       text-align: center;
-      border-top: 4px solid var(--green-light);
-      transition: transform .15s, box-shadow .15s;
+      background: linear-gradient(180deg, rgba(17, 29, 51, 0.95), rgba(11, 19, 35, 0.95));
     }
 
-    .member-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .member-emoji {
+      width: 4rem;
+      height: 4rem;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-    .member-emoji { font-size: 1.8rem; margin-bottom: 0.3rem; }
-    .member-team { font-weight: 700; font-size: 0.9rem; color: var(--green); }
-    .member-name { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+    .member-team {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
 
-    /* ── Tables ────────────────────────────────────────────────── */
-    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .member-name {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .team-pill {
+      margin-top: 0.85rem;
+      background: rgba(255, 191, 71, 0.14);
+      color: var(--gold-soft);
+      border: 1px solid rgba(255, 191, 71, 0.18);
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--surface);
-      font-size: 0.92rem;
+      min-width: 640px;
     }
 
-    thead th {
-      background: var(--green);
-      color: #fff;
-      font-weight: 600;
-      padding: 0.75rem 1rem;
+    th, td {
+      padding: 0.95rem 1rem;
       text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    thead th:first-child { border-radius: var(--radius) 0 0 0; }
-    thead th:last-child  { border-radius: 0 var(--radius) 0 0; }
-
-    tbody tr:nth-child(even) { background: #f0fdf4; }
-
-    td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-
-    tbody tr:last-child td { border-bottom: none; }
-
-    .rank-cell {
-      font-weight: 700;
-      color: var(--green);
-      width: 2.5rem;
+    th {
+      color: var(--gold-soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    /* ── Draft Info ─────────────────────────────────────────────── */
-    .draft-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+    td { color: #dbe5f5; }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.035);
     }
 
-    .info-box {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 0.9rem 1rem;
-      border-left: 4px solid var(--green-light);
+    .records-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .info-box .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .info-box .value { font-weight: 700; font-size: 1rem; color: var(--text); margin-top: 0.15rem; }
+    .record-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0.3rem 0 0.15rem;
+      color: var(--gold-soft);
+    }
 
-    /* ── Prizes ─────────────────────────────────────────────────── */
-    .prize-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .record-holder { font-weight: 700; }
+    .record-season { color: var(--muted); font-size: 0.88rem; }
 
-    .prize-row {
+    .notes-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    footer {
+      padding: 2rem 0 2.8rem;
+      color: var(--muted);
+    }
+
+    .footer-card {
+      padding: 1.15rem 1.35rem;
+      border-radius: var(--radius-lg);
+      background: rgba(9, 16, 29, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: space-between;
-      background: var(--surface);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 0.8rem 1.1rem;
       gap: 1rem;
     }
 
-    .prize-place { font-weight: 600; flex: 1; }
-    .prize-desc  { font-size: 0.82rem; color: var(--muted); flex: 2; }
-    .prize-amt   { font-weight: 800; font-size: 1.05rem; color: var(--green); white-space: nowrap; }
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .history-grid,
+      .draft-grid,
+      .spotlight-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .prize-total {
-      margin-top: 0.75rem;
-      text-align: right;
-      font-size: 0.88rem;
-      color: var(--muted);
+      .dashboard-grid,
+      .dates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .members-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
-    .prize-notes {
-      margin-top: 0.75rem;
-      font-size: 0.83rem;
-      color: var(--muted);
-      background: #f0fdf4;
-      padding: 0.6rem 0.9rem;
-      border-radius: 8px;
-      border-left: 3px solid var(--green-light);
+    @media (max-width: 820px) {
+      .rules-grid,
+      .vote-grid,
+      .notes-grid,
+      .records-grid,
+      .draft-order,
+      .draft-meta,
+      .prize-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .prize-row {
+        grid-template-columns: 1fr;
+      }
+
+      .members-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    /* ── Rules ──────────────────────────────────────────────────── */
-    .rules-list { display: flex; flex-direction: column; gap: 1rem; }
+    @media (max-width: 640px) {
+      .shell,
+      .nav-inner {
+        width: min(var(--max-width), calc(100% - 1rem));
+      }
 
-    .rule-category {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+      .hero {
+        padding-top: 3rem;
+      }
 
-    .rule-category-title {
-      background: var(--green);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.6rem 1rem;
-      font-size: 0.95rem;
-    }
+      .hero-card,
+      .hero-panel,
+      .section-shell {
+        padding: 1.2rem;
+      }
 
-    .rule-category ul {
-      list-style: none;
-      padding: 0.5rem 1rem 0.75rem;
-    }
+      .dashboard-grid,
+      .dates-grid,
+      .members-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .rule-category li {
-      padding: 0.4rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-
-    .rule-category li:last-child { border-bottom: none; }
-
-    .rule-category li::before {
-      content: "✓ ";
-      color: var(--green-light);
-      font-weight: 700;
-    }
-
-    /* ── Voting ─────────────────────────────────────────────────── */
-    .vote-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .vote-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem 1.25rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.5rem 1rem;
-      align-items: start;
-    }
-
-    .vote-date {
-      grid-column: 1 / -1;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .vote-result {
-      font-size: 0.8rem;
-      font-weight: 700;
-      background: #d1fae5;
-      color: var(--green);
-      border-radius: 20px;
-      padding: 0.2rem 0.65rem;
-      white-space: nowrap;
-      align-self: center;
-    }
-
-    .vote-topic { font-weight: 600; align-self: center; }
-
-    .vote-notes {
-      grid-column: 1 / -1;
-      font-size: 0.83rem;
-      color: var(--muted);
-    }
-
-    /* ── Playoffs ────────────────────────────────────────────────── */
-    .playoff-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
-
-    .bracket-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .bracket-round {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem 1.25rem;
-    }
-
-    .bracket-round-name {
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
-    }
-
-    .bracket-matchup {
-      font-size: 0.88rem;
-      color: var(--text);
-      padding: 0.2rem 0;
-    }
-
-    .bracket-matchup::before { content: "🏈 "; }
-
-    /* ── Champions ───────────────────────────────────────────────── */
-
-    /* ── Records ─────────────────────────────────────────────────── */
-
-    /* ── Footer ──────────────────────────────────────────────────── */
-    footer {
-      background: var(--green);
-      color: #a7f3d0;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.83rem;
-    }
-
-    footer strong { color: var(--gold); }
-
-    /* ── Utility ─────────────────────────────────────────────────── */
-    .note {
-      font-size: 0.83rem;
-      color: var(--muted);
-      background: #f0fdf4;
-      border-left: 3px solid var(--green-light);
-      padding: 0.5rem 0.8rem;
-      border-radius: 0 6px 6px 0;
-      margin-top: 0.75rem;
-    }
-
-    /* ── Responsive ──────────────────────────────────────────────── */
-    @media (max-width: 480px) {
-      .prize-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
-      .vote-card { grid-template-columns: 1fr; }
-      .vote-result { justify-self: start; }
+      .vote-controls,
+      .footer-card {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
-<body>
-
-<!-- ── Navigation ── -->
-<nav>
-  <a class="nav-brand" href="#top">🏈 {{ league.name }}</a>
-  <ul class="nav-links">
-    <li><a href="#members">Members</a></li>
-    <li><a href="#draft">Draft</a></li>
-    <li><a href="#prizes">Prizes</a></li>
-    <li><a href="#rules">Rules</a></li>
-    <li><a href="#voting">Voting</a></li>
-    <li><a href="#playoffs">Playoffs</a></li>
-    <li><a href="#champions">Champions</a></li>
-    <li><a href="#records">Records</a></li>
-  </ul>
-</nav>
-
-<!-- ── Hero ── -->
-<div class="hero" id="top">
-  <div class="hero-emoji">🏈</div>
-  <h1>{{ league.name }}</h1>
-  <p class="hero-sub">{{ league.season }} Season Handbook</p>
-  {% if league.tagline %}
-  <p class="hero-tagline">"{{ league.tagline }}"</p>
-  {% endif %}
-  <div class="hero-meta">
-    <span class="badge">📅 Season {{ league.season }}</span>
-    <span class="badge">👑 Commissioner: {{ league.commissioner }}</span>
-    <span class="badge">📱 Platform: {{ league.platform }}</span>
-    <span class="badge">🗓️ Founded {{ league.founded }}</span>
-  </div>
-</div>
-
-<main>
-
-  <!-- ── Members ── -->
-  <section id="members">
-    <h2 class="section-title">League Members</h2>
-    <div class="members-grid">
-      {% for m in members %}
-      <div class="member-card">
-        <div class="member-emoji">{{ m.emoji }}</div>
-        <div class="member-team">{{ m.team_name }}</div>
-        <div class="member-name">{{ m.name }}</div>
-      </div>
-      {% endfor %}
+<body id="top">
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">🏈 {{ league.name }}</a>
+      <ul class="nav-links">
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#dates">Dates</a></li>
+        <li><a href="#draft">Draft HQ</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#voting">Voting</a></li>
+        <li><a href="#teams">Teams</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
     </div>
-  </section>
+  </nav>
 
-  <!-- ── Draft ── -->
-  <section id="draft">
-    <h2 class="section-title">Draft Details</h2>
-    <div class="draft-info">
-      <div class="info-box">
-        <div class="label">📅 Date</div>
-        <div class="value">{{ draft.date }}</div>
+  <header class="hero shell">
+    <div class="hero-grid">
+      <div class="hero-card glass">
+        <div class="eyebrow">Official league HQ</div>
+        <h1 class="hero-title">{{ league.name }}</h1>
+        <p class="hero-sub">
+          Your single place for league rules, draft details, prize money, important dates,
+          voting outcomes, commissioner guidance, and season history.
+        </p>
+        {% if league.tagline %}
+        <p class="hero-tagline">“{{ league.tagline }}”</p>
+        {% endif %}
+        <div class="hero-badges">
+          <span class="badge">🏆 {{ league.season }} season</span>
+          <span class="badge">👑 Commissioner: {{ league.commissioner }}</span>
+          <span class="badge">📱 Platform: {{ league.platform }}</span>
+          <span class="badge">🗓️ Founded {{ league.founded }}</span>
+        </div>
       </div>
-      <div class="info-box">
-        <div class="label">🕖 Time</div>
-        <div class="value">{{ draft.time }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📋 Type</div>
-        <div class="value">{{ draft.type }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">🔢 Rounds</div>
-        <div class="value">{{ draft.rounds }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">⏱️ Seconds/Pick</div>
-        <div class="value">{{ draft.seconds_per_pick }}s</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📍 Location</div>
-        <div class="value">{{ draft.location }}</div>
-      </div>
+
+      <aside class="hero-panel glass">
+        <div class="panel-title">Season Snapshot</div>
+        <div class="panel-list">
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Draft</div>
+              <div>{{ draft.date }}</div>
+            </div>
+            <div class="panel-value">{{ draft.time }}</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Buy-In</div>
+              <div>League entry fee</div>
+            </div>
+            <div class="panel-value">${{ prizes.entry_fee }}</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Playoffs</div>
+              <div>{{ playoffs.format }}</div>
+            </div>
+            <div class="panel-value">{{ playoffs.weeks }}</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Tiebreaker</div>
+              <div>Postseason advancement</div>
+            </div>
+            <div class="panel-value">{{ playoffs.tiebreaker }}</div>
+          </div>
+        </div>
+      </aside>
     </div>
+  </header>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Pick</th>
-            <th>Manager</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for owner in draft.order %}
-          <tr>
-            <td class="rank-cell">#{{ loop.index }}</td>
-            <td>{{ owner }}</td>
-          </tr>
+  <main class="shell">
+    <section id="dashboard">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Home</div>
+            <h2 class="section-title">League dashboard</h2>
+          </div>
+          <p class="section-copy">
+            The season at a glance: what matters now, what is locked in, and what every manager
+            should know before kickoff.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
+          {% for item in dashboard %}
+          <article class="dashboard-card">
+            <div class="dashboard-label">{{ item.label }}</div>
+            <div class="dashboard-value">{{ item.value }}</div>
+            <p class="dashboard-detail">{{ item.detail }}</p>
+          </article>
           {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% if draft.note %}
-    <p class="note">📝 {{ draft.note }}</p>
-    {% endif %}
-  </section>
+        </div>
 
-  <!-- ── Prizes ── -->
-  <section id="prizes">
-    <h2 class="section-title">Prize Pool</h2>
-    <div class="prize-list">
-      {% for p in prizes.breakdown %}
-      <div class="prize-row">
-        <span class="prize-place">{{ p.place }}</span>
-        <span class="prize-desc">{{ p.description }}</span>
-        <span class="prize-amt">${{ p.amount }}</span>
+        <div class="spotlight-grid">
+          <article class="info-card">
+            <div class="card-label">What this handbook covers</div>
+            <h3>Everything outside the matchup screen</h3>
+            <p class="card-detail">
+              Use this site as the league source of truth for structure, payouts, key dates,
+              member info, and every preseason decision the group agrees to.
+            </p>
+            <ul>
+              <li><span class="label-quiet">League format</span><span class="value-strong">10-team full PPR</span></li>
+              <li><span class="label-quiet">Regular season</span><span class="value-strong">Weeks 1–13</span></li>
+              <li><span class="label-quiet">Playoff field</span><span class="value-strong">Top 6 teams</span></li>
+              <li><span class="label-quiet">Trade deadline</span><span class="value-strong">End of Week 10</span></li>
+            </ul>
+          </article>
+
+          <article class="playoff-card">
+            <div class="card-label">Postseason outlook</div>
+            <h3>Championship path</h3>
+            <ul>
+              <li><span class="label-quiet">Byes</span><span class="value-strong">{{ playoffs.byes }}</span></li>
+              <li><span class="label-quiet">Wild card</span><span class="value-strong">{{ playoffs.bracket[0].matchups | join(' • ') }}</span></li>
+              <li><span class="label-quiet">Final tiebreaker</span><span class="value-strong">{{ playoffs.tiebreaker }}</span></li>
+            </ul>
+          </article>
+        </div>
       </div>
-      {% endfor %}
-    </div>
-    <p class="prize-total">
-      Entry fee: ${{ prizes.entry_fee }} per team &nbsp;|&nbsp;
-      Total pool: <strong>${{ prizes.total_pool }}</strong>
-    </p>
-    {% if prizes.notes %}
-    <p class="prize-notes">📝 {{ prizes.notes }}</p>
-    {% endif %}
-  </section>
+    </section>
 
-  <!-- ── Rules ── -->
-  <section id="rules">
-    <h2 class="section-title">League Rules</h2>
-    <div class="rules-list">
-      {% for section in rules %}
-      <div class="rule-category">
-        <div class="rule-category-title">{{ section.category }}</div>
-        <ul>
-          {% for item in section.entries %}
-          <li>{{ item }}</li>
+    <section id="dates">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Calendar</div>
+            <h2 class="section-title">Important dates</h2>
+          </div>
+          <p class="section-copy">
+            Keep everyone aligned on the deadlines, events, and payout windows that define the season.
+          </p>
+        </div>
+
+        <div class="dates-grid">
+          {% for item in important_dates %}
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">{{ item.date }}</div>
+              <span class="date-type">{{ item.type }}</span>
+            </div>
+            <h3 class="date-title">{{ item.title }}</h3>
+            <p class="date-detail">{{ item.detail }}</p>
+          </article>
           {% endfor %}
-        </ul>
+        </div>
       </div>
-      {% endfor %}
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Voting ── -->
-  <section id="voting">
-    <h2 class="section-title">Voting Decisions</h2>
-    <div class="vote-list">
-      {% for v in voting %}
-      <div class="vote-card">
-        <span class="vote-date">{{ v.date }}</span>
-        <span class="vote-result">{{ v.result }}</span>
-        <span class="vote-topic">{{ v.topic }}</span>
-        {% if v.notes %}
-        <p class="vote-notes">{{ v.notes }}</p>
+    <section id="draft">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Draft HQ</div>
+            <h2 class="section-title">Draft details and order</h2>
+          </div>
+          <p class="section-copy">
+            Put the most important draft info in one polished place so nobody is chasing messages on draft week.
+          </p>
+        </div>
+
+        <div class="draft-grid">
+          <div>
+            <div class="draft-meta">
+              <article class="info-card">
+                <div class="card-label">Date</div>
+                <h3>{{ draft.date }}</h3>
+                <p class="card-detail">Draft clock starts at {{ draft.time }}.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">Format</div>
+                <h3>{{ draft.type }}</h3>
+                <p class="card-detail">{{ draft.rounds }} rounds with {{ draft.seconds_per_pick }} seconds per pick.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">Location</div>
+                <h3>{{ draft.location }}</h3>
+                <p class="card-detail">Live hangout with ESPN handling the board.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">League reminder</div>
+                <h3>Dues must be paid</h3>
+                <p class="card-detail">Managers should be fully paid in before or on draft night.</p>
+              </article>
+            </div>
+            {% if draft.note %}
+            <div class="draft-note">📝 {{ draft.note }}</div>
+            {% endif %}
+          </div>
+
+          <div>
+            <div class="card-label" style="margin-bottom:0.9rem;">Draft order</div>
+            <div class="draft-order">
+              {% for owner in draft.order %}
+              <article class="draft-pick">
+                <div class="pick-number">{{ loop.index }}</div>
+                <div>
+                  <div class="pick-owner">{{ owner }}</div>
+                  <div class="card-detail">{{ 'Opening pick' if loop.index == 1 else 'Draft slot #' ~ loop.index }}</div>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prizes">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Money</div>
+            <h2 class="section-title">Prize pool</h2>
+          </div>
+          <p class="section-copy">
+            Transparent payouts, clear buy-in expectations, and a quick snapshot of what the season is worth.
+          </p>
+        </div>
+
+        <div class="prize-summary">
+          <article class="info-card">
+            <div class="card-label">Entry fee</div>
+            <h3>${{ prizes.entry_fee }} per team</h3>
+            <p class="card-detail">Collected by draft day.</p>
+          </article>
+          <article class="info-card">
+            <div class="card-label">Total pool</div>
+            <h3>${{ prizes.total_pool }}</h3>
+            <p class="card-detail">Built for season-long stakes and bragging rights.</p>
+          </article>
+          <article class="info-card">
+            <div class="card-label">Payout timing</div>
+            <h3>Within 1 week</h3>
+            <p class="card-detail">Winnings go out after the championship wraps.</p>
+          </article>
+        </div>
+
+        {% for p in prizes.breakdown %}
+        <article class="prize-row">
+          <div class="prize-place">{{ p.place }}</div>
+          <div class="prize-desc">{{ p.description }}</div>
+          <div class="prize-amt">${{ p.amount }}</div>
+        </article>
+        {% endfor %}
+
+        {% if prizes.notes %}
+        <div class="prize-notes">📝 {{ prizes.notes }}</div>
         {% endif %}
       </div>
-      {% endfor %}
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Playoffs ── -->
-  <section id="playoffs">
-    <h2 class="section-title">Playoff Format</h2>
-    <div class="playoff-info">
-      <div class="info-box">
-        <div class="label">📋 Format</div>
-        <div class="value">{{ playoffs.format }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📅 Weeks</div>
-        <div class="value">{{ playoffs.weeks }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">🛌 Byes</div>
-        <div class="value">{{ playoffs.byes }}</div>
-      </div>
-      <div class="info-box">
-        <div class="label">⚖️ Tiebreaker</div>
-        <div class="value">{{ playoffs.tiebreaker }}</div>
-      </div>
-    </div>
-    <div class="bracket-list">
-      {% for round in playoffs.bracket %}
-      <div class="bracket-round">
-        <div class="bracket-round-name">{{ round.round }}</div>
-        {% for matchup in round.matchups %}
-        <div class="bracket-matchup">{{ matchup }}</div>
-        {% endfor %}
-      </div>
-      {% endfor %}
-    </div>
-  </section>
+    <section id="rules">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Rulebook</div>
+            <h2 class="section-title">League rules</h2>
+          </div>
+          <p class="section-copy">
+            A clean rulebook beats searching old texts. Group your league rules so everyone knows the standard before the season starts.
+          </p>
+        </div>
 
-  <!-- ── Champions ── -->
-  <section id="champions">
-    <h2 class="section-title">Past Champions</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Season</th>
-            <th>Champion</th>
-            <th>Team</th>
-            <th>Record</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for c in champions %}
-          <tr>
-            <td><strong>{{ c.season }}</strong></td>
-            <td>{{ c.champion }}</td>
-            <td>{{ c.team }}</td>
-            <td>{{ c.record }}</td>
-            <td>{{ c.points }}</td>
-          </tr>
+        <div class="rules-grid">
+          {% for section in rules %}
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">{{ section.category }}</h3>
+            <ul class="rule-list">
+              {% for item in section.entries %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
           {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </section>
+        </div>
+      </div>
+    </section>
 
-  <!-- ── Records ── -->
-  <section id="records">
-    <h2 class="section-title">League Records</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Record</th>
-            <th>Holder</th>
-            <th>Value</th>
-            <th>Season</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for r in records %}
-          <tr>
-            <td>{{ r.category }}</td>
-            <td>{{ r.holder }}</td>
-            <td><strong>{{ r.value }}</strong></td>
-            <td>{{ r.season if r.season else "All-time" }}</td>
-          </tr>
+    <section id="voting">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">League votes</div>
+            <h2 class="section-title">Simple voting recap</h2>
+          </div>
+          <p class="section-copy">
+            Keep votes lightweight: show the outcome, the winning option, and how many managers supported it.
+          </p>
+        </div>
+
+        <div class="vote-grid">
+          {% for v in voting %}
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">{{ v.date }}</div>
+                <h3 class="vote-topic">{{ v.topic }}</h3>
+              </div>
+              <span class="status-pill">{{ v.status }}</span>
+            </div>
+            {% if v.effective %}
+            <div class="vote-meta">{{ v.effective }}</div>
+            {% endif %}
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                {% for option in v.options %}
+                <option {% if option == v.selected_option %}selected{% endif %}>{{ option }}</option>
+                {% endfor %}
+              </select>
+              <span class="vote-count">{{ v.vote_count }} / {{ v.total_votes }} votes</span>
+            </div>
+            {% if v.notes %}
+            <p class="vote-notes">{{ v.notes }}</p>
+            {% endif %}
+          </article>
           {% endfor %}
-        </tbody>
-      </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="teams">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">League members</div>
+            <h2 class="section-title">Teams</h2>
+          </div>
+          <p class="section-copy">
+            Give every manager and team a home in the handbook so the site feels like the official league identity hub.
+          </p>
+        </div>
+
+        <div class="members-grid">
+          {% for m in members %}
+          <article class="member-card">
+            <div class="member-emoji">{{ m.emoji }}</div>
+            <div class="member-team">{{ m.team_name }}</div>
+            <div class="member-name">{{ m.name }}</div>
+            {% if m.name == league.commissioner %}
+            <div class="team-pill">Commissioner</div>
+            {% else %}
+            <div class="team-pill">League Member</div>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Legacy</div>
+            <h2 class="section-title">League history and records</h2>
+          </div>
+          <p class="section-copy">
+            The history section is where the app starts to feel official: champions, streaks, records, and all-time bragging rights.
+          </p>
+        </div>
+
+        <div class="history-grid">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Champion</th>
+                  <th>Team</th>
+                  <th>Record</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for c in champions %}
+                <tr>
+                  <td><strong>{{ c.season }}</strong></td>
+                  <td>{{ c.champion }}</td>
+                  <td>{{ c.team }}</td>
+                  <td>{{ c.record }}</td>
+                  <td>{{ c.points }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="records-grid">
+            {% for r in records %}
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>{{ r.category }}</h3>
+              <div class="record-value">{{ r.value }}</div>
+              <div class="record-holder">{{ r.holder }}</div>
+              <div class="record-season">{{ r.season if r.season else "All-time" }}</div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Commissioner desk</div>
+            <h2 class="section-title">Commissioner notes</h2>
+          </div>
+          <p class="section-copy">
+            Use this space for preseason expectations, tone-setting announcements, and anything the league should see in writing before kickoff.
+          </p>
+        </div>
+
+        <div class="notes-grid">
+          {% for note in commissioner_notes %}
+          <article class="note-card">
+            <div class="card-label">Announcement</div>
+            <h3 class="note-title">{{ note.title }}</h3>
+            <p class="note-body">{{ note.body }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-card">
+      <div>
+        <strong>{{ league.name }}</strong> — {{ league.season }} season · Commissioner {{ league.commissioner }}
+      </div>
+      <div>Last updated: {{ generated_on }}</div>
     </div>
-  </section>
-
-</main>
-
-<!-- ── Footer ── -->
-<footer>
-  <p>
-    <strong>{{ league.name }}</strong> &mdash; {{ league.season }} Season
-    &nbsp;|&nbsp; Commissioner: {{ league.commissioner }}
-    &nbsp;|&nbsp; Platform: {{ league.platform }}
-  </p>
-  <p style="margin-top:0.4rem; color:#6ee7b7;">
-    Last updated: {{ generated_on }}
-  </p>
-</footer>
-
+  </footer>
 </body>
 </html>

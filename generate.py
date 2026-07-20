@@ -17,11 +17,11 @@ from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE     = os.path.join(BASE_DIR, "data", "league.json")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(BASE_DIR, "data", "league.json")
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
-OUTPUT_DIR    = os.path.join(BASE_DIR, "docs")
-OUTPUT_FILE   = os.path.join(OUTPUT_DIR, "index.html")
+OUTPUT_DIR = os.path.join(BASE_DIR, "docs")
+OUTPUT_FILE = os.path.join(OUTPUT_DIR, "index.html")
 
 
 def load_data(path: str) -> dict:
@@ -39,15 +39,18 @@ def render_template(data: dict, templates_dir: str) -> str:
     template = env.get_template("handbook.html")
 
     context = {
-        "league":       data["league"],
-        "members":      data["members"],
-        "draft":        data["draft"],
-        "prizes":       data["prizes"],
-        "rules":        data["rules"],
-        "voting":       data["voting"],
-        "playoffs":     data["playoffs"],
-        "champions":    data["champions"],
-        "records":      data["records"],
+        "league": data.get("league", {}),
+        "dashboard": data.get("dashboard", []),
+        "members": data.get("members", []),
+        "draft": data.get("draft", {}),
+        "prizes": data.get("prizes", {}),
+        "rules": data.get("rules", []),
+        "voting": data.get("voting", []),
+        "important_dates": data.get("important_dates", []),
+        "commissioner_notes": data.get("commissioner_notes", []),
+        "playoffs": data.get("playoffs", {}),
+        "champions": data.get("champions", []),
+        "records": data.get("records", []),
         "generated_on": datetime.now().strftime("%B %d, %Y at %I:%M %p"),
     }
 
@@ -68,11 +71,12 @@ def main() -> None:
     print(f"📂  Loading data from  : {os.path.relpath(DATA_FILE)}")
     data = load_data(DATA_FILE)
 
-    league_name = data["league"]["name"]
-    season      = data["league"]["season"]
+    league = data.get("league", {})
+    league_name = league.get("name", "Fantasy Football League")
+    season = league.get("season", "Unknown Season")
     print(f"✅  League            : {league_name} ({season})")
 
-    print(f"🎨  Rendering template: templates/handbook.html")
+    print("🎨  Rendering template: templates/handbook.html")
     html = render_template(data, TEMPLATES_DIR)
 
     print(f"💾  Writing output to : {os.path.relpath(OUTPUT_FILE)}")

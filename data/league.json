@@ -7,17 +7,77 @@
     "founded": 2018,
     "tagline": "Where bragging rights are everything."
   },
+  "dashboard": [
+    {
+      "label": "League Size",
+      "value": "10 Teams",
+      "detail": "A full room of returning rivals"
+    },
+    {
+      "label": "Draft Night",
+      "value": "Aug 24",
+      "detail": "7:00 PM ET live + ESPN room"
+    },
+    {
+      "label": "Buy-In",
+      "value": "$50",
+      "detail": "Due by draft day — no pay, no play"
+    },
+    {
+      "label": "Prize Pool",
+      "value": "$500",
+      "detail": "Champion-heavy payouts with bonus awards"
+    }
+  ],
+  "important_dates": [
+    {
+      "date": "July 12, 2025",
+      "title": "Preseason Rule Vote Night",
+      "type": "League Vote",
+      "detail": "League members finalize scoring, roster, and prize updates before the handbook locks."
+    },
+    {
+      "date": "August 17, 2025",
+      "title": "Final Rules Lock",
+      "type": "Deadline",
+      "detail": "All offseason rule decisions are considered final after this date unless the full league agrees otherwise."
+    },
+    {
+      "date": "August 24, 2025",
+      "title": "Draft Day",
+      "type": "Event",
+      "detail": "Live draft begins at 7:00 PM ET from Chris's backyard with ESPN managing the board."
+    },
+    {
+      "date": "August 24, 2025",
+      "title": "League Dues Due",
+      "type": "Payment",
+      "detail": "Every entry fee must be paid by draft night to stay active for the season."
+    },
+    {
+      "date": "November 11, 2025",
+      "title": "Trade Deadline",
+      "type": "Deadline",
+      "detail": "Final day to complete roster-improving deals before teams shift into playoff mode."
+    },
+    {
+      "date": "December 30, 2025",
+      "title": "Championship Payout Window",
+      "type": "Payout",
+      "detail": "Prize payouts will be sent within one week of the title game wrapping up."
+    }
+  ],
   "members": [
-    { "name": "Chris Weller",    "team_name": "Weller's Warriors",      "emoji": "⚔️" },
-    { "name": "Jamie Torres",    "team_name": "Torres Tornadoes",        "emoji": "🌪️" },
-    { "name": "Sam Nguyen",      "team_name": "Nguyen or Lose",          "emoji": "🏆" },
-    { "name": "Alex Patel",      "team_name": "Patel's Playmakers",      "emoji": "🎯" },
-    { "name": "Jordan Kim",      "team_name": "Kim's Kickers",           "emoji": "🦵" },
-    { "name": "Riley Johnson",   "team_name": "Johnson's Juggernauts",   "emoji": "💪" },
-    { "name": "Morgan Davis",    "team_name": "Davis Destroyers",        "emoji": "💥" },
-    { "name": "Casey Brown",     "team_name": "Brown's Blitz",           "emoji": "⚡" },
-    { "name": "Taylor Wilson",   "team_name": "Wilson's Wildcards",      "emoji": "🃏" },
-    { "name": "Drew Martinez",   "team_name": "Martinez Machine",        "emoji": "🤖" }
+    { "name": "Chris Weller", "team_name": "Weller's Warriors", "emoji": "⚔️" },
+    { "name": "Jamie Torres", "team_name": "Torres Tornadoes", "emoji": "🌪️" },
+    { "name": "Sam Nguyen", "team_name": "Nguyen or Lose", "emoji": "🏆" },
+    { "name": "Alex Patel", "team_name": "Patel's Playmakers", "emoji": "🎯" },
+    { "name": "Jordan Kim", "team_name": "Kim's Kickers", "emoji": "🦵" },
+    { "name": "Riley Johnson", "team_name": "Johnson's Juggernauts", "emoji": "💪" },
+    { "name": "Morgan Davis", "team_name": "Davis Destroyers", "emoji": "💥" },
+    { "name": "Casey Brown", "team_name": "Brown's Blitz", "emoji": "⚡" },
+    { "name": "Taylor Wilson", "team_name": "Wilson's Wildcards", "emoji": "🃏" },
+    { "name": "Drew Martinez", "team_name": "Martinez Machine", "emoji": "🤖" }
   ],
   "draft": {
     "date": "August 24, 2025",
@@ -44,10 +104,10 @@
     "entry_fee": 50,
     "total_pool": 500,
     "breakdown": [
-      { "place": "🥇 1st Place Champion",  "amount": 250, "description": "Regular season winner-take-most" },
+      { "place": "🥇 1st Place Champion", "amount": 250, "description": "Regular season winner-take-most" },
       { "place": "🥈 2nd Place Runner-Up", "amount": 150, "description": "Runner-up prize" },
-      { "place": "🥉 3rd Place",           "amount":  75, "description": "Third place consolation" },
-      { "place": "📈 Most Points Scored",  "amount":  25, "description": "Highest total points across all weeks" }
+      { "place": "🥉 3rd Place", "amount": 75, "description": "Third place consolation" },
+      { "place": "📈 Most Points Scored", "amount": 25, "description": "Highest total points across all weeks" }
     ],
     "notes": "All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game."
   },
@@ -103,32 +163,67 @@
     {
       "date": "July 12, 2025",
       "topic": "Switch to Full PPR Scoring",
-      "result": "Approved (8–2)",
-      "notes": "League voted to move from 0.5 PPR to full PPR starting in the 2025 season."
+      "status": "Approved",
+      "selected_option": "Switch to Full PPR",
+      "vote_count": 8,
+      "total_votes": 10,
+      "options": ["Keep 0.5 PPR", "Switch to Full PPR"],
+      "notes": "League voted to move from 0.5 PPR to full PPR starting in the 2025 season.",
+      "effective": "Effective for the 2025 season"
     },
     {
       "date": "July 12, 2025",
       "topic": "Add a 3rd Place Consolation Prize",
-      "result": "Approved (7–3)",
-      "notes": "A $75 prize will now be awarded to the third-place finisher to keep more teams engaged in the playoffs."
+      "status": "Approved",
+      "selected_option": "Add $75 third-place payout",
+      "vote_count": 7,
+      "total_votes": 10,
+      "options": ["Keep current payout structure", "Add $75 third-place payout"],
+      "notes": "Adds a little more late-season incentive for playoff teams outside the final.",
+      "effective": "Effective for the 2025 season"
     },
     {
       "date": "July 12, 2025",
       "topic": "Increase Roster Size from 14 to 15",
-      "result": "Approved (9–1)",
-      "notes": "One bench spot was added to allow more roster flexibility and bye week management."
+      "status": "Approved",
+      "selected_option": "Expand rosters to 15",
+      "vote_count": 9,
+      "total_votes": 10,
+      "options": ["Keep rosters at 14", "Expand rosters to 15"],
+      "notes": "One bench spot was added to improve bye-week flexibility.",
+      "effective": "Effective for the 2025 season"
     },
     {
       "date": "August 2, 2024",
       "topic": "Move Trade Deadline from Week 9 to Week 10",
-      "result": "Approved (6–4)",
-      "notes": "Approved for the 2024 season. Owners felt Week 9 was too early given the number of bye weeks."
+      "status": "Approved",
+      "selected_option": "Move deadline to Week 10",
+      "vote_count": 6,
+      "total_votes": 10,
+      "options": ["Keep deadline at Week 9", "Move deadline to Week 10"],
+      "notes": "Owners felt Week 9 was too early with the number of bye weeks on the schedule.",
+      "effective": "Already active"
     },
     {
       "date": "August 2, 2024",
       "topic": "Allow IR Spot for Injured Players",
-      "result": "Approved (10–0)",
-      "notes": "Unanimous approval. One IR spot added for players with an official IR designation."
+      "status": "Approved",
+      "selected_option": "Add 1 IR spot",
+      "vote_count": 10,
+      "total_votes": 10,
+      "options": ["Do not add IR", "Add 1 IR spot"],
+      "notes": "Unanimous approval added one official IR slot for eligible players.",
+      "effective": "Already active"
+    }
+  ],
+  "commissioner_notes": [
+    {
+      "title": "2025 Season Focus",
+      "body": "This season's goal is simple: keep the league competitive, transparent, and fun. Every major preseason decision is documented here so nobody has to search old texts to remember what we agreed on."
+    },
+    {
+      "title": "League Expectations",
+      "body": "Pay dues on time, stay active through the full season, and raise rule questions before the final lock date. If anything feels unclear, the handbook is the first place to check before we revisit a call as a group."
     }
   ],
   "playoffs": {
@@ -136,29 +231,29 @@
     "weeks": "Weeks 14–17",
     "byes": "Seeds 1 and 2 receive a first-round bye (Week 14)",
     "bracket": [
-      { "round": "Wild Card (Week 14)",  "matchups": ["Seed 3 vs Seed 6", "Seed 4 vs Seed 5"] },
+      { "round": "Wild Card (Week 14)", "matchups": ["Seed 3 vs Seed 6", "Seed 4 vs Seed 5"] },
       { "round": "Semifinals (Week 15)", "matchups": ["Seed 1 vs lowest remaining", "Seed 2 vs highest remaining"] },
       { "round": "Championship (Week 17)", "matchups": ["Semifinal Winner 1 vs Semifinal Winner 2"] }
     ],
     "tiebreaker": "Total points scored during the regular season."
   },
   "champions": [
-    { "season": 2024, "champion": "Sam Nguyen",    "team": "Nguyen or Lose",       "record": "10-3", "points": 1842.5 },
-    { "season": 2023, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "11-2", "points": 1901.2 },
-    { "season": 2022, "champion": "Jordan Kim",    "team": "Kim's Kickers",        "record": "9-4",  "points": 1763.8 },
-    { "season": 2021, "champion": "Riley Johnson", "team": "Johnson's Juggernauts","record": "10-3", "points": 1812.4 },
-    { "season": 2020, "champion": "Alex Patel",    "team": "Patel's Playmakers",   "record": "9-4",  "points": 1698.1 },
-    { "season": 2019, "champion": "Jamie Torres",  "team": "Torres Tornadoes",     "record": "12-1", "points": 1957.6 },
-    { "season": 2018, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "8-5",  "points": 1645.3 }
+    { "season": 2024, "champion": "Sam Nguyen", "team": "Nguyen or Lose", "record": "10-3", "points": 1842.5 },
+    { "season": 2023, "champion": "Chris Weller", "team": "Weller's Warriors", "record": "11-2", "points": 1901.2 },
+    { "season": 2022, "champion": "Jordan Kim", "team": "Kim's Kickers", "record": "9-4", "points": 1763.8 },
+    { "season": 2021, "champion": "Riley Johnson", "team": "Johnson's Juggernauts", "record": "10-3", "points": 1812.4 },
+    { "season": 2020, "champion": "Alex Patel", "team": "Patel's Playmakers", "record": "9-4", "points": 1698.1 },
+    { "season": 2019, "champion": "Jamie Torres", "team": "Torres Tornadoes", "record": "12-1", "points": 1957.6 },
+    { "season": 2018, "champion": "Chris Weller", "team": "Weller's Warriors", "record": "8-5", "points": 1645.3 }
   ],
   "records": [
-    { "category": "🏆 Most Points in a Season",     "holder": "Jamie Torres",   "value": "1,957.6 pts",  "season": 2019 },
-    { "category": "📈 Best Regular Season Record",  "holder": "Jamie Torres",   "value": "12-1",         "season": 2019 },
-    { "category": "💥 Highest Single-Week Score",   "holder": "Chris Weller",   "value": "217.4 pts",    "season": 2023 },
-    { "category": "😬 Lowest Single-Week Score",    "holder": "Drew Martinez",  "value": "48.2 pts",     "season": 2021 },
-    { "category": "🏅 Most Titles",                 "holder": "Chris Weller",   "value": "2 titles",     "season": null },
-    { "category": "📉 Worst Season Record",         "holder": "Taylor Wilson",  "value": "2-11",         "season": 2022 },
-    { "category": "🔥 Longest Win Streak",          "holder": "Jamie Torres",   "value": "9 games",      "season": 2019 },
-    { "category": "❄️ Longest Losing Streak",       "holder": "Morgan Davis",   "value": "8 games",      "season": 2020 }
+    { "category": "🏆 Most Points in a Season", "holder": "Jamie Torres", "value": "1,957.6 pts", "season": 2019 },
+    { "category": "📈 Best Regular Season Record", "holder": "Jamie Torres", "value": "12-1", "season": 2019 },
+    { "category": "💥 Highest Single-Week Score", "holder": "Chris Weller", "value": "217.4 pts", "season": 2023 },
+    { "category": "😬 Lowest Single-Week Score", "holder": "Drew Martinez", "value": "48.2 pts", "season": 2021 },
+    { "category": "🏅 Most Titles", "holder": "Chris Weller", "value": "2 titles", "season": null },
+    { "category": "📉 Worst Season Record", "holder": "Taylor Wilson", "value": "2-11", "season": 2022 },
+    { "category": "🔥 Longest Win Streak", "holder": "Jamie Torres", "value": "9 games", "season": 2019 },
+    { "category": "❄️ Longest Losing Streak", "holder": "Morgan Davis", "value": "8 games", "season": 2020 }
   ]
 }

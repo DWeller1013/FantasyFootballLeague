@@ -5,990 +5,1786 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Backyard Bowl Fantasy League — 2025 Handbook</title>
   <style>
-    /* ── Reset & Base ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --green:      #1a472a;
-      --green-mid:  #2d6a4f;
-      --green-light:#52b788;
-      --gold:       #f4a922;
-      --gold-light: #fde68a;
-      --bg:         #f8f9fa;
-      --surface:    #ffffff;
-      --text:       #1c1c1e;
-      --muted:      #6c757d;
-      --border:     #dee2e6;
-      --radius:     12px;
-      --shadow:     0 2px 12px rgba(0,0,0,.08);
-      --nav-h:      60px;
+      --bg: #08111f;
+      --bg-soft: #101a2d;
+      --surface: rgba(12, 21, 38, 0.82);
+      --surface-strong: #111d33;
+      --surface-light: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f8fbff;
+      --muted: #aab7cf;
+      --gold: #ffbf47;
+      --gold-soft: #ffe3a6;
+      --green: #27c383;
+      --green-soft: rgba(39, 195, 131, 0.12);
+      --blue: #64b5ff;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                   Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      min-height: 100vh;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
       line-height: 1.6;
+      background:
+        radial-gradient(circle at top left, rgba(100, 181, 255, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(39, 195, 131, 0.16), transparent 30%),
+        linear-gradient(180deg, #09111f 0%, #07101d 55%, #050a13 100%);
     }
 
-    /* ── Navigation ────────────────────────────────────────────── */
+    a { color: inherit; }
+
+    .shell {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
     nav {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: var(--green);
-      height: var(--nav-h);
+      z-index: 50;
+      background: rgba(6, 12, 22, 0.8);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin: 0 auto;
+      min-height: 72px;
       display: flex;
       align-items: center;
-      padding: 0 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      gap: 1rem;
     }
 
     .nav-brand {
-      color: var(--gold);
-      font-weight: 700;
-      font-size: 1.05rem;
-      white-space: nowrap;
-      margin-right: auto;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-decoration: none;
+      color: var(--gold);
+      white-space: nowrap;
     }
 
     .nav-links {
+      margin-left: auto;
       display: flex;
-      gap: 0.25rem;
+      gap: 0.4rem;
       list-style: none;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 2px;
+      padding-bottom: 0.25rem;
     }
 
     .nav-links a {
-      color: #d1fae5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.8rem;
-      padding: 0.35rem 0.6rem;
-      border-radius: 6px;
+      font-size: 0.88rem;
       white-space: nowrap;
-      transition: background .2s, color .2s;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
 
-    .nav-links a:hover { background: var(--green-mid); color: #fff; }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
 
-    /* ── Hero ──────────────────────────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
-      color: #fff;
-      text-align: center;
-      padding: 4rem 1.5rem 3rem;
+      padding: 4.5rem 0 2rem;
     }
 
-    .hero-emoji { font-size: 3.5rem; margin-bottom: 0.5rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
 
-    .hero h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 800;
-      letter-spacing: -0.5px;
+    .hero-card,
+    .hero-panel,
+    .section-card,
+    .dashboard-card,
+    .info-card,
+    .date-card,
+    .member-card,
+    .rule-card,
+    .vote-card,
+    .note-card,
+    .record-card,
+    .draft-pick,
+    .playoff-card,
+    .prize-row,
+    .table-wrap {
+      border-radius: var(--radius-lg);
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      background:
+        linear-gradient(145deg, rgba(255, 191, 71, 0.14), rgba(39, 195, 131, 0.08)),
+        rgba(9, 18, 33, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -4rem -4rem auto;
+      width: 12rem;
+      height: 12rem;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 191, 71, 0.25), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--gold-soft);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.85rem;
+      max-width: 12ch;
     }
 
     .hero-sub {
-      font-size: 1rem;
-      color: var(--gold-light);
-      margin-top: 0.4rem;
+      max-width: 58ch;
+      color: #d8e4f8;
+      font-size: 1.04rem;
     }
 
     .hero-tagline {
-      font-size: 1.05rem;
-      color: #a7f3d0;
       margin-top: 1rem;
+      color: var(--gold-soft);
       font-style: italic;
+      font-size: 1.02rem;
     }
 
-    .hero-meta {
+    .hero-badges {
+      margin-top: 1.5rem;
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-top: 1.5rem;
     }
 
     .badge {
-      background: rgba(255,255,255,.15);
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 20px;
-      padding: 0.3rem 0.9rem;
-      font-size: 0.85rem;
-      color: #e0fdf4;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 0.9rem;
     }
 
-    /* ── Layout ────────────────────────────────────────────────── */
-    main { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+    .hero-panel {
+      padding: 1.5rem;
+      background: rgba(11, 18, 31, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
 
-    section { margin-bottom: 2.5rem; }
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .panel-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .panel-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .panel-label {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .panel-value {
+      text-align: right;
+      font-weight: 700;
+      max-width: 13rem;
+    }
+
+    main {
+      padding-bottom: 4rem;
+    }
+
+    section {
+      margin-top: 1.65rem;
+    }
+
+    .section-shell {
+      padding: 1.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 15, 28, 0.66);
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 1.35rem;
+    }
+
+    .section-kicker {
+      color: var(--green);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
 
     .section-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--green);
-      border-bottom: 3px solid var(--gold);
-      padding-bottom: 0.4rem;
-      margin-bottom: 1.25rem;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      letter-spacing: -0.03em;
     }
 
-    /* ── Cards ─────────────────────────────────────────────────── */
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1.25rem 1.5rem;
+    .section-copy {
+      color: var(--muted);
+      max-width: 56ch;
     }
 
-    /* ── Members Grid ──────────────────────────────────────────── */
-    .members-grid {
+    .dashboard-grid,
+    .members-grid,
+    .rules-grid,
+    .notes-grid,
+    .records-grid,
+    .dates-grid,
+    .vote-grid,
+    .draft-order {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-bottom: 1rem;
+    }
+
+    .dashboard-card,
+    .info-card,
+    .member-card,
+    .rule-card,
+    .note-card,
+    .record-card,
+    .date-card,
+    .vote-card,
+    .draft-pick,
+    .playoff-card {
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.2rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .dashboard-card:hover,
+    .info-card:hover,
+    .member-card:hover,
+    .rule-card:hover,
+    .note-card:hover,
+    .record-card:hover,
+    .date-card:hover,
+    .vote-card:hover,
+    .draft-pick:hover,
+    .playoff-card:hover,
+    .prize-row:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 191, 71, 0.26);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28);
+    }
+
+    .dashboard-label,
+    .card-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.65rem;
+    }
+
+    .dashboard-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .dashboard-detail,
+    .card-detail,
+    .date-detail,
+    .note-body,
+    .vote-notes {
+      color: #d1dbeb;
+      font-size: 0.95rem;
+    }
+
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 1rem;
+    }
+
+    .info-card h3,
+    .playoff-card h3,
+    .note-title,
+    .rule-title,
+    .vote-topic,
+    .date-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .info-card ul,
+    .playoff-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+
+    .info-card li,
+    .playoff-card li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .info-card li:last-child,
+    .playoff-card li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label-quiet {
+      color: var(--muted);
+    }
+
+    .value-strong {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .dates-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .date-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .date-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold), var(--green));
+    }
+
+    .date-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 0.8rem;
+    }
+
+    .date-stamp {
+      color: var(--gold-soft);
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .date-type,
+    .status-pill,
+    .team-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .date-type {
+      background: rgba(100, 181, 255, 0.14);
+      color: var(--blue);
+      border: 1px solid rgba(100, 181, 255, 0.24);
+    }
+
+    .draft-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .draft-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .draft-order {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .draft-pick {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, rgba(255, 191, 71, 0.12), rgba(100, 181, 255, 0.06));
+    }
+
+    .pick-number {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #09111f;
+      background: linear-gradient(135deg, var(--gold), #ffd97a);
+      flex-shrink: 0;
+    }
+
+    .pick-owner {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .draft-note,
+    .prize-notes {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: var(--radius-md);
+      background: rgba(39, 195, 131, 0.1);
+      border: 1px solid rgba(39, 195, 131, 0.18);
+      color: #d9f7eb;
+    }
+
+    .prize-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .prize-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.4fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1rem 1.1rem;
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 0.75rem;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .prize-place { font-weight: 700; }
+    .prize-desc { color: var(--muted); }
+    .prize-amt { font-size: 1.2rem; font-weight: 800; color: var(--gold); }
+
+    .rules-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rule-list {
+      list-style: none;
+      display: grid;
       gap: 0.75rem;
+      margin-top: 0.95rem;
+    }
+
+    .rule-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: #dbe5f5;
+    }
+
+    .rule-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .vote-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .vote-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+      margin-bottom: 0.7rem;
+    }
+
+    .vote-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .status-pill {
+      background: rgba(39, 195, 131, 0.14);
+      color: #89ecbb;
+      border: 1px solid rgba(39, 195, 131, 0.22);
+    }
+
+    .vote-controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 1rem 0 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .vote-select {
+      min-width: 220px;
+      appearance: none;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      padding: 0.8rem 0.95rem;
+      font: inherit;
+    }
+
+    .vote-count {
+      padding: 0.65rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(255, 191, 71, 0.12);
+      border: 1px solid rgba(255, 191, 71, 0.18);
+      color: var(--gold-soft);
+      font-weight: 700;
+    }
+
+    .vote-meta {
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+
+    .members-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 
     .member-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem;
       text-align: center;
-      border-top: 4px solid var(--green-light);
-      transition: transform .15s, box-shadow .15s;
+      background: linear-gradient(180deg, rgba(17, 29, 51, 0.95), rgba(11, 19, 35, 0.95));
     }
 
-    .member-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+    .member-emoji {
+      width: 4rem;
+      height: 4rem;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-    .member-emoji { font-size: 1.8rem; margin-bottom: 0.3rem; }
-    .member-team { font-weight: 700; font-size: 0.9rem; color: var(--green); }
-    .member-name { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+    .member-team {
+      font-weight: 800;
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
 
-    /* ── Tables ────────────────────────────────────────────────── */
-    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .member-name {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .team-pill {
+      margin-top: 0.85rem;
+      background: rgba(255, 191, 71, 0.14);
+      color: var(--gold-soft);
+      border: 1px solid rgba(255, 191, 71, 0.18);
+    }
+
+    .history-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: rgba(13, 22, 39, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--surface);
-      font-size: 0.92rem;
+      min-width: 640px;
     }
 
-    thead th {
-      background: var(--green);
-      color: #fff;
-      font-weight: 600;
-      padding: 0.75rem 1rem;
+    th, td {
+      padding: 0.95rem 1rem;
       text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    thead th:first-child { border-radius: var(--radius) 0 0 0; }
-    thead th:last-child  { border-radius: 0 var(--radius) 0 0; }
-
-    tbody tr:nth-child(even) { background: #f0fdf4; }
-
-    td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
-
-    tbody tr:last-child td { border-bottom: none; }
-
-    .rank-cell {
-      font-weight: 700;
-      color: var(--green);
-      width: 2.5rem;
+    th {
+      color: var(--gold-soft);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    /* ── Draft Info ─────────────────────────────────────────────── */
-    .draft-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+    td { color: #dbe5f5; }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.035);
     }
 
-    .info-box {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 0.9rem 1rem;
-      border-left: 4px solid var(--green-light);
+    .records-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .info-box .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
-    .info-box .value { font-weight: 700; font-size: 1rem; color: var(--text); margin-top: 0.15rem; }
+    .record-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0.3rem 0 0.15rem;
+      color: var(--gold-soft);
+    }
 
-    /* ── Prizes ─────────────────────────────────────────────────── */
-    .prize-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .record-holder { font-weight: 700; }
+    .record-season { color: var(--muted); font-size: 0.88rem; }
 
-    .prize-row {
+    .notes-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    footer {
+      padding: 2rem 0 2.8rem;
+      color: var(--muted);
+    }
+
+    .footer-card {
+      padding: 1.15rem 1.35rem;
+      border-radius: var(--radius-lg);
+      background: rgba(9, 16, 29, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: space-between;
-      background: var(--surface);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 0.8rem 1.1rem;
       gap: 1rem;
     }
 
-    .prize-place { font-weight: 600; flex: 1; }
-    .prize-desc  { font-size: 0.82rem; color: var(--muted); flex: 2; }
-    .prize-amt   { font-weight: 800; font-size: 1.05rem; color: var(--green); white-space: nowrap; }
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .history-grid,
+      .draft-grid,
+      .spotlight-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .prize-total {
-      margin-top: 0.75rem;
-      text-align: right;
-      font-size: 0.88rem;
-      color: var(--muted);
+      .dashboard-grid,
+      .dates-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .members-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
 
-    .prize-notes {
-      margin-top: 0.75rem;
-      font-size: 0.83rem;
-      color: var(--muted);
-      background: #f0fdf4;
-      padding: 0.6rem 0.9rem;
-      border-radius: 8px;
-      border-left: 3px solid var(--green-light);
+    @media (max-width: 820px) {
+      .rules-grid,
+      .vote-grid,
+      .notes-grid,
+      .records-grid,
+      .draft-order,
+      .draft-meta,
+      .prize-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .prize-row {
+        grid-template-columns: 1fr;
+      }
+
+      .members-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    /* ── Rules ──────────────────────────────────────────────────── */
-    .rules-list { display: flex; flex-direction: column; gap: 1rem; }
+    @media (max-width: 640px) {
+      .shell,
+      .nav-inner {
+        width: min(var(--max-width), calc(100% - 1rem));
+      }
 
-    .rule-category {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
+      .hero {
+        padding-top: 3rem;
+      }
 
-    .rule-category-title {
-      background: var(--green);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.6rem 1rem;
-      font-size: 0.95rem;
-    }
+      .hero-card,
+      .hero-panel,
+      .section-shell {
+        padding: 1.2rem;
+      }
 
-    .rule-category ul {
-      list-style: none;
-      padding: 0.5rem 1rem 0.75rem;
-    }
+      .dashboard-grid,
+      .dates-grid,
+      .members-grid {
+        grid-template-columns: 1fr;
+      }
 
-    .rule-category li {
-      padding: 0.4rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
-    }
-
-    .rule-category li:last-child { border-bottom: none; }
-
-    .rule-category li::before {
-      content: "✓ ";
-      color: var(--green-light);
-      font-weight: 700;
-    }
-
-    /* ── Voting ─────────────────────────────────────────────────── */
-    .vote-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .vote-card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem 1.25rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.5rem 1rem;
-      align-items: start;
-    }
-
-    .vote-date {
-      grid-column: 1 / -1;
-      font-size: 0.75rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-    }
-
-    .vote-result {
-      font-size: 0.8rem;
-      font-weight: 700;
-      background: #d1fae5;
-      color: var(--green);
-      border-radius: 20px;
-      padding: 0.2rem 0.65rem;
-      white-space: nowrap;
-      align-self: center;
-    }
-
-    .vote-topic { font-weight: 600; align-self: center; }
-
-    .vote-notes {
-      grid-column: 1 / -1;
-      font-size: 0.83rem;
-      color: var(--muted);
-    }
-
-    /* ── Playoffs ────────────────────────────────────────────────── */
-    .playoff-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
-
-    .bracket-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-    .bracket-round {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem 1.25rem;
-    }
-
-    .bracket-round-name {
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
-    }
-
-    .bracket-matchup {
-      font-size: 0.88rem;
-      color: var(--text);
-      padding: 0.2rem 0;
-    }
-
-    .bracket-matchup::before { content: "🏈 "; }
-
-    /* ── Champions ───────────────────────────────────────────────── */
-
-    /* ── Records ─────────────────────────────────────────────────── */
-
-    /* ── Footer ──────────────────────────────────────────────────── */
-    footer {
-      background: var(--green);
-      color: #a7f3d0;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.83rem;
-    }
-
-    footer strong { color: var(--gold); }
-
-    /* ── Utility ─────────────────────────────────────────────────── */
-    .note {
-      font-size: 0.83rem;
-      color: var(--muted);
-      background: #f0fdf4;
-      border-left: 3px solid var(--green-light);
-      padding: 0.5rem 0.8rem;
-      border-radius: 0 6px 6px 0;
-      margin-top: 0.75rem;
-    }
-
-    /* ── Responsive ──────────────────────────────────────────────── */
-    @media (max-width: 480px) {
-      .prize-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
-      .vote-card { grid-template-columns: 1fr; }
-      .vote-result { justify-self: start; }
+      .vote-controls,
+      .footer-card {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
-<body>
-
-<!-- ── Navigation ── -->
-<nav>
-  <a class="nav-brand" href="#top">🏈 Backyard Bowl Fantasy League</a>
-  <ul class="nav-links">
-    <li><a href="#members">Members</a></li>
-    <li><a href="#draft">Draft</a></li>
-    <li><a href="#prizes">Prizes</a></li>
-    <li><a href="#rules">Rules</a></li>
-    <li><a href="#voting">Voting</a></li>
-    <li><a href="#playoffs">Playoffs</a></li>
-    <li><a href="#champions">Champions</a></li>
-    <li><a href="#records">Records</a></li>
-  </ul>
-</nav>
-
-<!-- ── Hero ── -->
-<div class="hero" id="top">
-  <div class="hero-emoji">🏈</div>
-  <h1>Backyard Bowl Fantasy League</h1>
-  <p class="hero-sub">2025 Season Handbook</p>
-  
-  <p class="hero-tagline">"Where bragging rights are everything."</p>
-  
-  <div class="hero-meta">
-    <span class="badge">📅 Season 2025</span>
-    <span class="badge">👑 Commissioner: Chris Weller</span>
-    <span class="badge">📱 Platform: ESPN</span>
-    <span class="badge">🗓️ Founded 2018</span>
-  </div>
-</div>
-
-<main>
-
-  <!-- ── Members ── -->
-  <section id="members">
-    <h2 class="section-title">League Members</h2>
-    <div class="members-grid">
-      
-      <div class="member-card">
-        <div class="member-emoji">⚔️</div>
-        <div class="member-team">Weller&#39;s Warriors</div>
-        <div class="member-name">Chris Weller</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🌪️</div>
-        <div class="member-team">Torres Tornadoes</div>
-        <div class="member-name">Jamie Torres</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🏆</div>
-        <div class="member-team">Nguyen or Lose</div>
-        <div class="member-name">Sam Nguyen</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🎯</div>
-        <div class="member-team">Patel&#39;s Playmakers</div>
-        <div class="member-name">Alex Patel</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🦵</div>
-        <div class="member-team">Kim&#39;s Kickers</div>
-        <div class="member-name">Jordan Kim</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">💪</div>
-        <div class="member-team">Johnson&#39;s Juggernauts</div>
-        <div class="member-name">Riley Johnson</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">💥</div>
-        <div class="member-team">Davis Destroyers</div>
-        <div class="member-name">Morgan Davis</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">⚡</div>
-        <div class="member-team">Brown&#39;s Blitz</div>
-        <div class="member-name">Casey Brown</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🃏</div>
-        <div class="member-team">Wilson&#39;s Wildcards</div>
-        <div class="member-name">Taylor Wilson</div>
-      </div>
-      
-      <div class="member-card">
-        <div class="member-emoji">🤖</div>
-        <div class="member-team">Martinez Machine</div>
-        <div class="member-name">Drew Martinez</div>
-      </div>
-      
+<body id="top">
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">🏈 Backyard Bowl Fantasy League</a>
+      <ul class="nav-links">
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#dates">Dates</a></li>
+        <li><a href="#draft">Draft HQ</a></li>
+        <li><a href="#prizes">Prizes</a></li>
+        <li><a href="#rules">Rules</a></li>
+        <li><a href="#voting">Voting</a></li>
+        <li><a href="#teams">Teams</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#notes">Notes</a></li>
+      </ul>
     </div>
-  </section>
+  </nav>
 
-  <!-- ── Draft ── -->
-  <section id="draft">
-    <h2 class="section-title">Draft Details</h2>
-    <div class="draft-info">
-      <div class="info-box">
-        <div class="label">📅 Date</div>
-        <div class="value">August 24, 2025</div>
+  <header class="hero shell">
+    <div class="hero-grid">
+      <div class="hero-card glass">
+        <div class="eyebrow">Official league HQ</div>
+        <h1 class="hero-title">Backyard Bowl Fantasy League</h1>
+        <p class="hero-sub">
+          Your single place for league rules, draft details, prize money, important dates,
+          voting outcomes, commissioner guidance, and season history.
+        </p>
+        
+        <p class="hero-tagline">“Where bragging rights are everything.”</p>
+        
+        <div class="hero-badges">
+          <span class="badge">🏆 2025 season</span>
+          <span class="badge">👑 Commissioner: Chris Weller</span>
+          <span class="badge">📱 Platform: ESPN</span>
+          <span class="badge">🗓️ Founded 2018</span>
+        </div>
       </div>
-      <div class="info-box">
-        <div class="label">🕖 Time</div>
-        <div class="value">7:00 PM ET</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📋 Type</div>
-        <div class="value">Snake Draft</div>
-      </div>
-      <div class="info-box">
-        <div class="label">🔢 Rounds</div>
-        <div class="value">15</div>
-      </div>
-      <div class="info-box">
-        <div class="label">⏱️ Seconds/Pick</div>
-        <div class="value">90s</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📍 Location</div>
-        <div class="value">Chris&#39;s backyard / ESPN App</div>
-      </div>
+
+      <aside class="hero-panel glass">
+        <div class="panel-title">Season Snapshot</div>
+        <div class="panel-list">
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Draft</div>
+              <div>August 24, 2025</div>
+            </div>
+            <div class="panel-value">7:00 PM ET</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Buy-In</div>
+              <div>League entry fee</div>
+            </div>
+            <div class="panel-value">$50</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Playoffs</div>
+              <div>6-team bracket, 4 weeks</div>
+            </div>
+            <div class="panel-value">Weeks 14–17</div>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-label">Tiebreaker</div>
+              <div>Postseason advancement</div>
+            </div>
+            <div class="panel-value">Total points scored during the regular season.</div>
+          </div>
+        </div>
+      </aside>
     </div>
+  </header>
 
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Pick</th>
-            <th>Manager</th>
-          </tr>
-        </thead>
-        <tbody>
+  <main class="shell">
+    <section id="dashboard">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Home</div>
+            <h2 class="section-title">League dashboard</h2>
+          </div>
+          <p class="section-copy">
+            The season at a glance: what matters now, what is locked in, and what every manager
+            should know before kickoff.
+          </p>
+        </div>
+
+        <div class="dashboard-grid">
           
-          <tr>
-            <td class="rank-cell">#1</td>
-            <td>Sam Nguyen</td>
-          </tr>
+          <article class="dashboard-card">
+            <div class="dashboard-label">League Size</div>
+            <div class="dashboard-value">10 Teams</div>
+            <p class="dashboard-detail">A full room of returning rivals</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#2</td>
-            <td>Jordan Kim</td>
-          </tr>
+          <article class="dashboard-card">
+            <div class="dashboard-label">Draft Night</div>
+            <div class="dashboard-value">Aug 24</div>
+            <p class="dashboard-detail">7:00 PM ET live + ESPN room</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#3</td>
-            <td>Alex Patel</td>
-          </tr>
+          <article class="dashboard-card">
+            <div class="dashboard-label">Buy-In</div>
+            <div class="dashboard-value">$50</div>
+            <p class="dashboard-detail">Due by draft day — no pay, no play</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#4</td>
-            <td>Riley Johnson</td>
-          </tr>
+          <article class="dashboard-card">
+            <div class="dashboard-label">Prize Pool</div>
+            <div class="dashboard-value">$500</div>
+            <p class="dashboard-detail">Champion-heavy payouts with bonus awards</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#5</td>
-            <td>Morgan Davis</td>
-          </tr>
+        </div>
+
+        <div class="spotlight-grid">
+          <article class="info-card">
+            <div class="card-label">What this handbook covers</div>
+            <h3>Everything outside the matchup screen</h3>
+            <p class="card-detail">
+              Use this site as the league source of truth for structure, payouts, key dates,
+              member info, and every preseason decision the group agrees to.
+            </p>
+            <ul>
+              <li><span class="label-quiet">League format</span><span class="value-strong">10-team full PPR</span></li>
+              <li><span class="label-quiet">Regular season</span><span class="value-strong">Weeks 1–13</span></li>
+              <li><span class="label-quiet">Playoff field</span><span class="value-strong">Top 6 teams</span></li>
+              <li><span class="label-quiet">Trade deadline</span><span class="value-strong">End of Week 10</span></li>
+            </ul>
+          </article>
+
+          <article class="playoff-card">
+            <div class="card-label">Postseason outlook</div>
+            <h3>Championship path</h3>
+            <ul>
+              <li><span class="label-quiet">Byes</span><span class="value-strong">Seeds 1 and 2 receive a first-round bye (Week 14)</span></li>
+              <li><span class="label-quiet">Wild card</span><span class="value-strong">Seed 3 vs Seed 6 • Seed 4 vs Seed 5</span></li>
+              <li><span class="label-quiet">Final tiebreaker</span><span class="value-strong">Total points scored during the regular season.</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dates">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Calendar</div>
+            <h2 class="section-title">Important dates</h2>
+          </div>
+          <p class="section-copy">
+            Keep everyone aligned on the deadlines, events, and payout windows that define the season.
+          </p>
+        </div>
+
+        <div class="dates-grid">
           
-          <tr>
-            <td class="rank-cell">#6</td>
-            <td>Casey Brown</td>
-          </tr>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">July 12, 2025</div>
+              <span class="date-type">League Vote</span>
+            </div>
+            <h3 class="date-title">Preseason Rule Vote Night</h3>
+            <p class="date-detail">League members finalize scoring, roster, and prize updates before the handbook locks.</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#7</td>
-            <td>Taylor Wilson</td>
-          </tr>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">August 17, 2025</div>
+              <span class="date-type">Deadline</span>
+            </div>
+            <h3 class="date-title">Final Rules Lock</h3>
+            <p class="date-detail">All offseason rule decisions are considered final after this date unless the full league agrees otherwise.</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#8</td>
-            <td>Drew Martinez</td>
-          </tr>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">August 24, 2025</div>
+              <span class="date-type">Event</span>
+            </div>
+            <h3 class="date-title">Draft Day</h3>
+            <p class="date-detail">Live draft begins at 7:00 PM ET from Chris&#39;s backyard with ESPN managing the board.</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#9</td>
-            <td>Jamie Torres</td>
-          </tr>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">August 24, 2025</div>
+              <span class="date-type">Payment</span>
+            </div>
+            <h3 class="date-title">League Dues Due</h3>
+            <p class="date-detail">Every entry fee must be paid by draft night to stay active for the season.</p>
+          </article>
           
-          <tr>
-            <td class="rank-cell">#10</td>
-            <td>Chris Weller</td>
-          </tr>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">November 11, 2025</div>
+              <span class="date-type">Deadline</span>
+            </div>
+            <h3 class="date-title">Trade Deadline</h3>
+            <p class="date-detail">Final day to complete roster-improving deals before teams shift into playoff mode.</p>
+          </article>
           
-        </tbody>
-      </table>
+          <article class="date-card">
+            <div class="date-top">
+              <div class="date-stamp">December 30, 2025</div>
+              <span class="date-type">Payout</span>
+            </div>
+            <h3 class="date-title">Championship Payout Window</h3>
+            <p class="date-detail">Prize payouts will be sent within one week of the title game wrapping up.</p>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="draft">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Draft HQ</div>
+            <h2 class="section-title">Draft details and order</h2>
+          </div>
+          <p class="section-copy">
+            Put the most important draft info in one polished place so nobody is chasing messages on draft week.
+          </p>
+        </div>
+
+        <div class="draft-grid">
+          <div>
+            <div class="draft-meta">
+              <article class="info-card">
+                <div class="card-label">Date</div>
+                <h3>August 24, 2025</h3>
+                <p class="card-detail">Draft clock starts at 7:00 PM ET.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">Format</div>
+                <h3>Snake Draft</h3>
+                <p class="card-detail">15 rounds with 90 seconds per pick.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">Location</div>
+                <h3>Chris&#39;s backyard / ESPN App</h3>
+                <p class="card-detail">Live hangout with ESPN handling the board.</p>
+              </article>
+              <article class="info-card">
+                <div class="card-label">League reminder</div>
+                <h3>Dues must be paid</h3>
+                <p class="card-detail">Managers should be fully paid in before or on draft night.</p>
+              </article>
+            </div>
+            
+            <div class="draft-note">📝 Draft order was determined by a random number draw at the end of last season&#39;s championship game.</div>
+            
+          </div>
+
+          <div>
+            <div class="card-label" style="margin-bottom:0.9rem;">Draft order</div>
+            <div class="draft-order">
+              
+              <article class="draft-pick">
+                <div class="pick-number">1</div>
+                <div>
+                  <div class="pick-owner">Sam Nguyen</div>
+                  <div class="card-detail">Opening pick</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">2</div>
+                <div>
+                  <div class="pick-owner">Jordan Kim</div>
+                  <div class="card-detail">Draft slot #2</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">3</div>
+                <div>
+                  <div class="pick-owner">Alex Patel</div>
+                  <div class="card-detail">Draft slot #3</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">4</div>
+                <div>
+                  <div class="pick-owner">Riley Johnson</div>
+                  <div class="card-detail">Draft slot #4</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">5</div>
+                <div>
+                  <div class="pick-owner">Morgan Davis</div>
+                  <div class="card-detail">Draft slot #5</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">6</div>
+                <div>
+                  <div class="pick-owner">Casey Brown</div>
+                  <div class="card-detail">Draft slot #6</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">7</div>
+                <div>
+                  <div class="pick-owner">Taylor Wilson</div>
+                  <div class="card-detail">Draft slot #7</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">8</div>
+                <div>
+                  <div class="pick-owner">Drew Martinez</div>
+                  <div class="card-detail">Draft slot #8</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">9</div>
+                <div>
+                  <div class="pick-owner">Jamie Torres</div>
+                  <div class="card-detail">Draft slot #9</div>
+                </div>
+              </article>
+              
+              <article class="draft-pick">
+                <div class="pick-number">10</div>
+                <div>
+                  <div class="pick-owner">Chris Weller</div>
+                  <div class="card-detail">Draft slot #10</div>
+                </div>
+              </article>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prizes">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Money</div>
+            <h2 class="section-title">Prize pool</h2>
+          </div>
+          <p class="section-copy">
+            Transparent payouts, clear buy-in expectations, and a quick snapshot of what the season is worth.
+          </p>
+        </div>
+
+        <div class="prize-summary">
+          <article class="info-card">
+            <div class="card-label">Entry fee</div>
+            <h3>$50 per team</h3>
+            <p class="card-detail">Collected by draft day.</p>
+          </article>
+          <article class="info-card">
+            <div class="card-label">Total pool</div>
+            <h3>$500</h3>
+            <p class="card-detail">Built for season-long stakes and bragging rights.</p>
+          </article>
+          <article class="info-card">
+            <div class="card-label">Payout timing</div>
+            <h3>Within 1 week</h3>
+            <p class="card-detail">Winnings go out after the championship wraps.</p>
+          </article>
+        </div>
+
+        
+        <article class="prize-row">
+          <div class="prize-place">🥇 1st Place Champion</div>
+          <div class="prize-desc">Regular season winner-take-most</div>
+          <div class="prize-amt">$250</div>
+        </article>
+        
+        <article class="prize-row">
+          <div class="prize-place">🥈 2nd Place Runner-Up</div>
+          <div class="prize-desc">Runner-up prize</div>
+          <div class="prize-amt">$150</div>
+        </article>
+        
+        <article class="prize-row">
+          <div class="prize-place">🥉 3rd Place</div>
+          <div class="prize-desc">Third place consolation</div>
+          <div class="prize-amt">$75</div>
+        </article>
+        
+        <article class="prize-row">
+          <div class="prize-place">📈 Most Points Scored</div>
+          <div class="prize-desc">Highest total points across all weeks</div>
+          <div class="prize-amt">$25</div>
+        </article>
+        
+
+        
+        <div class="prize-notes">📝 All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game.</div>
+        
+      </div>
+    </section>
+
+    <section id="rules">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Rulebook</div>
+            <h2 class="section-title">League rules</h2>
+          </div>
+          <p class="section-copy">
+            A clean rulebook beats searching old texts. Group your league rules so everyone knows the standard before the season starts.
+          </p>
+        </div>
+
+        <div class="rules-grid">
+          
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">📋 General</h3>
+            <ul class="rule-list">
+              
+              <li>This is a 10-team, full-PPR (point per reception) league.</li>
+              
+              <li>Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.</li>
+              
+              <li>The top 6 teams advance to the playoffs.</li>
+              
+              <li>All roster moves must be made before the weekly NFL game lock.</li>
+              
+            </ul>
+          </article>
+          
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">🏈 Roster</h3>
+            <ul class="rule-list">
+              
+              <li>Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.</li>
+              
+              <li>Bench: 6 spots.</li>
+              
+              <li>IR spot: 1 spot (player must have official IR designation).</li>
+              
+              <li>Maximum of 2 players from any single NFL team on your active roster.</li>
+              
+            </ul>
+          </article>
+          
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">🔁 Trades</h3>
+            <ul class="rule-list">
+              
+              <li>Trade deadline is the end of Week 10.</li>
+              
+              <li>All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.</li>
+              
+              <li>Trades process after a 24-hour review period unless vetoed.</li>
+              
+              <li>You may not trade draft picks.</li>
+              
+            </ul>
+          </article>
+          
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">📥 Waivers</h3>
+            <ul class="rule-list">
+              
+              <li>Waivers process every Wednesday at 4:00 AM ET.</li>
+              
+              <li>Waiver priority is continuous rolling: successful claims move you to last priority.</li>
+              
+              <li>Free agents (after waiver period) are first-come, first-served.</li>
+              
+              <li>You may not drop a player during an active game.</li>
+              
+            </ul>
+          </article>
+          
+          <article class="rule-card">
+            <div class="card-label">Rule category</div>
+            <h3 class="rule-title">🏆 Playoffs</h3>
+            <ul class="rule-list">
+              
+              <li>Top 6 teams qualify for playoffs.</li>
+              
+              <li>Seeds 1 and 2 receive a first-round bye.</li>
+              
+              <li>Matchups: (3 vs 6) and (4 vs 5) in the first round.</li>
+              
+              <li>Championship game is played in Week 17.</li>
+              
+              <li>In the event of a playoff tie, the team with more total points for the season advances.</li>
+              
+            </ul>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="voting">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">League votes</div>
+            <h2 class="section-title">Simple voting recap</h2>
+          </div>
+          <p class="section-copy">
+            Keep votes lightweight: show the outcome, the winning option, and how many managers supported it.
+          </p>
+        </div>
+
+        <div class="vote-grid">
+          
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">July 12, 2025</div>
+                <h3 class="vote-topic">Switch to Full PPR Scoring</h3>
+              </div>
+              <span class="status-pill">Approved</span>
+            </div>
+            
+            <div class="vote-meta">Effective for the 2025 season</div>
+            
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                
+                <option >Keep 0.5 PPR</option>
+                
+                <option selected>Switch to Full PPR</option>
+                
+              </select>
+              <span class="vote-count">8 / 10 votes</span>
+            </div>
+            
+            <p class="vote-notes">League voted to move from 0.5 PPR to full PPR starting in the 2025 season.</p>
+            
+          </article>
+          
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">July 12, 2025</div>
+                <h3 class="vote-topic">Add a 3rd Place Consolation Prize</h3>
+              </div>
+              <span class="status-pill">Approved</span>
+            </div>
+            
+            <div class="vote-meta">Effective for the 2025 season</div>
+            
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                
+                <option >Keep current payout structure</option>
+                
+                <option selected>Add $75 third-place payout</option>
+                
+              </select>
+              <span class="vote-count">7 / 10 votes</span>
+            </div>
+            
+            <p class="vote-notes">Adds a little more late-season incentive for playoff teams outside the final.</p>
+            
+          </article>
+          
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">July 12, 2025</div>
+                <h3 class="vote-topic">Increase Roster Size from 14 to 15</h3>
+              </div>
+              <span class="status-pill">Approved</span>
+            </div>
+            
+            <div class="vote-meta">Effective for the 2025 season</div>
+            
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                
+                <option >Keep rosters at 14</option>
+                
+                <option selected>Expand rosters to 15</option>
+                
+              </select>
+              <span class="vote-count">9 / 10 votes</span>
+            </div>
+            
+            <p class="vote-notes">One bench spot was added to improve bye-week flexibility.</p>
+            
+          </article>
+          
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">August 2, 2024</div>
+                <h3 class="vote-topic">Move Trade Deadline from Week 9 to Week 10</h3>
+              </div>
+              <span class="status-pill">Approved</span>
+            </div>
+            
+            <div class="vote-meta">Already active</div>
+            
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                
+                <option >Keep deadline at Week 9</option>
+                
+                <option selected>Move deadline to Week 10</option>
+                
+              </select>
+              <span class="vote-count">6 / 10 votes</span>
+            </div>
+            
+            <p class="vote-notes">Owners felt Week 9 was too early with the number of bye weeks on the schedule.</p>
+            
+          </article>
+          
+          <article class="vote-card">
+            <div class="vote-top">
+              <div>
+                <div class="vote-date">August 2, 2024</div>
+                <h3 class="vote-topic">Allow IR Spot for Injured Players</h3>
+              </div>
+              <span class="status-pill">Approved</span>
+            </div>
+            
+            <div class="vote-meta">Already active</div>
+            
+            <div class="vote-controls">
+              <select class="vote-select" aria-label="Winning vote option" disabled>
+                
+                <option >Do not add IR</option>
+                
+                <option selected>Add 1 IR spot</option>
+                
+              </select>
+              <span class="vote-count">10 / 10 votes</span>
+            </div>
+            
+            <p class="vote-notes">Unanimous approval added one official IR slot for eligible players.</p>
+            
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="teams">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">League members</div>
+            <h2 class="section-title">Teams</h2>
+          </div>
+          <p class="section-copy">
+            Give every manager and team a home in the handbook so the site feels like the official league identity hub.
+          </p>
+        </div>
+
+        <div class="members-grid">
+          
+          <article class="member-card">
+            <div class="member-emoji">⚔️</div>
+            <div class="member-team">Weller&#39;s Warriors</div>
+            <div class="member-name">Chris Weller</div>
+            
+            <div class="team-pill">Commissioner</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🌪️</div>
+            <div class="member-team">Torres Tornadoes</div>
+            <div class="member-name">Jamie Torres</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🏆</div>
+            <div class="member-team">Nguyen or Lose</div>
+            <div class="member-name">Sam Nguyen</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🎯</div>
+            <div class="member-team">Patel&#39;s Playmakers</div>
+            <div class="member-name">Alex Patel</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🦵</div>
+            <div class="member-team">Kim&#39;s Kickers</div>
+            <div class="member-name">Jordan Kim</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">💪</div>
+            <div class="member-team">Johnson&#39;s Juggernauts</div>
+            <div class="member-name">Riley Johnson</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">💥</div>
+            <div class="member-team">Davis Destroyers</div>
+            <div class="member-name">Morgan Davis</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">⚡</div>
+            <div class="member-team">Brown&#39;s Blitz</div>
+            <div class="member-name">Casey Brown</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🃏</div>
+            <div class="member-team">Wilson&#39;s Wildcards</div>
+            <div class="member-name">Taylor Wilson</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+          <article class="member-card">
+            <div class="member-emoji">🤖</div>
+            <div class="member-team">Martinez Machine</div>
+            <div class="member-name">Drew Martinez</div>
+            
+            <div class="team-pill">League Member</div>
+            
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="history">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Legacy</div>
+            <h2 class="section-title">League history and records</h2>
+          </div>
+          <p class="section-copy">
+            The history section is where the app starts to feel official: champions, streaks, records, and all-time bragging rights.
+          </p>
+        </div>
+
+        <div class="history-grid">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Champion</th>
+                  <th>Team</th>
+                  <th>Record</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <td><strong>2024</strong></td>
+                  <td>Sam Nguyen</td>
+                  <td>Nguyen or Lose</td>
+                  <td>10-3</td>
+                  <td>1842.5</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2023</strong></td>
+                  <td>Chris Weller</td>
+                  <td>Weller&#39;s Warriors</td>
+                  <td>11-2</td>
+                  <td>1901.2</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2022</strong></td>
+                  <td>Jordan Kim</td>
+                  <td>Kim&#39;s Kickers</td>
+                  <td>9-4</td>
+                  <td>1763.8</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2021</strong></td>
+                  <td>Riley Johnson</td>
+                  <td>Johnson&#39;s Juggernauts</td>
+                  <td>10-3</td>
+                  <td>1812.4</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2020</strong></td>
+                  <td>Alex Patel</td>
+                  <td>Patel&#39;s Playmakers</td>
+                  <td>9-4</td>
+                  <td>1698.1</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2019</strong></td>
+                  <td>Jamie Torres</td>
+                  <td>Torres Tornadoes</td>
+                  <td>12-1</td>
+                  <td>1957.6</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>2018</strong></td>
+                  <td>Chris Weller</td>
+                  <td>Weller&#39;s Warriors</td>
+                  <td>8-5</td>
+                  <td>1645.3</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+
+          <div class="records-grid">
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>🏆 Most Points in a Season</h3>
+              <div class="record-value">1,957.6 pts</div>
+              <div class="record-holder">Jamie Torres</div>
+              <div class="record-season">2019</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>📈 Best Regular Season Record</h3>
+              <div class="record-value">12-1</div>
+              <div class="record-holder">Jamie Torres</div>
+              <div class="record-season">2019</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>💥 Highest Single-Week Score</h3>
+              <div class="record-value">217.4 pts</div>
+              <div class="record-holder">Chris Weller</div>
+              <div class="record-season">2023</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>😬 Lowest Single-Week Score</h3>
+              <div class="record-value">48.2 pts</div>
+              <div class="record-holder">Drew Martinez</div>
+              <div class="record-season">2021</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>🏅 Most Titles</h3>
+              <div class="record-value">2 titles</div>
+              <div class="record-holder">Chris Weller</div>
+              <div class="record-season">All-time</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>📉 Worst Season Record</h3>
+              <div class="record-value">2-11</div>
+              <div class="record-holder">Taylor Wilson</div>
+              <div class="record-season">2022</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>🔥 Longest Win Streak</h3>
+              <div class="record-value">9 games</div>
+              <div class="record-holder">Jamie Torres</div>
+              <div class="record-season">2019</div>
+            </article>
+            
+            <article class="record-card">
+              <div class="card-label">League record</div>
+              <h3>❄️ Longest Losing Streak</h3>
+              <div class="record-value">8 games</div>
+              <div class="record-holder">Morgan Davis</div>
+              <div class="record-season">2020</div>
+            </article>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="section-shell glass">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Commissioner desk</div>
+            <h2 class="section-title">Commissioner notes</h2>
+          </div>
+          <p class="section-copy">
+            Use this space for preseason expectations, tone-setting announcements, and anything the league should see in writing before kickoff.
+          </p>
+        </div>
+
+        <div class="notes-grid">
+          
+          <article class="note-card">
+            <div class="card-label">Announcement</div>
+            <h3 class="note-title">2025 Season Focus</h3>
+            <p class="note-body">This season&#39;s goal is simple: keep the league competitive, transparent, and fun. Every major preseason decision is documented here so nobody has to search old texts to remember what we agreed on.</p>
+          </article>
+          
+          <article class="note-card">
+            <div class="card-label">Announcement</div>
+            <h3 class="note-title">League Expectations</h3>
+            <p class="note-body">Pay dues on time, stay active through the full season, and raise rule questions before the final lock date. If anything feels unclear, the handbook is the first place to check before we revisit a call as a group.</p>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <div class="footer-card">
+      <div>
+        <strong>Backyard Bowl Fantasy League</strong> — 2025 season · Commissioner Chris Weller
+      </div>
+      <div>Last updated: July 20, 2026 at 09:11 PM</div>
     </div>
-    
-    <p class="note">📝 Draft order was determined by a random number draw at the end of last season&#39;s championship game.</p>
-    
-  </section>
-
-  <!-- ── Prizes ── -->
-  <section id="prizes">
-    <h2 class="section-title">Prize Pool</h2>
-    <div class="prize-list">
-      
-      <div class="prize-row">
-        <span class="prize-place">🥇 1st Place Champion</span>
-        <span class="prize-desc">Regular season winner-take-most</span>
-        <span class="prize-amt">$250</span>
-      </div>
-      
-      <div class="prize-row">
-        <span class="prize-place">🥈 2nd Place Runner-Up</span>
-        <span class="prize-desc">Runner-up prize</span>
-        <span class="prize-amt">$150</span>
-      </div>
-      
-      <div class="prize-row">
-        <span class="prize-place">🥉 3rd Place</span>
-        <span class="prize-desc">Third place consolation</span>
-        <span class="prize-amt">$75</span>
-      </div>
-      
-      <div class="prize-row">
-        <span class="prize-place">📈 Most Points Scored</span>
-        <span class="prize-desc">Highest total points across all weeks</span>
-        <span class="prize-amt">$25</span>
-      </div>
-      
-    </div>
-    <p class="prize-total">
-      Entry fee: $50 per team &nbsp;|&nbsp;
-      Total pool: <strong>$500</strong>
-    </p>
-    
-    <p class="prize-notes">📝 All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game.</p>
-    
-  </section>
-
-  <!-- ── Rules ── -->
-  <section id="rules">
-    <h2 class="section-title">League Rules</h2>
-    <div class="rules-list">
-      
-      <div class="rule-category">
-        <div class="rule-category-title">📋 General</div>
-        <ul>
-          
-          <li>This is a 10-team, full-PPR (point per reception) league.</li>
-          
-          <li>Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.</li>
-          
-          <li>The top 6 teams advance to the playoffs.</li>
-          
-          <li>All roster moves must be made before the weekly NFL game lock.</li>
-          
-        </ul>
-      </div>
-      
-      <div class="rule-category">
-        <div class="rule-category-title">🏈 Roster</div>
-        <ul>
-          
-          <li>Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.</li>
-          
-          <li>Bench: 6 spots.</li>
-          
-          <li>IR spot: 1 spot (player must have official IR designation).</li>
-          
-          <li>Maximum of 2 players from any single NFL team on your active roster.</li>
-          
-        </ul>
-      </div>
-      
-      <div class="rule-category">
-        <div class="rule-category-title">🔁 Trades</div>
-        <ul>
-          
-          <li>Trade deadline is the end of Week 10.</li>
-          
-          <li>All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.</li>
-          
-          <li>Trades process after a 24-hour review period unless vetoed.</li>
-          
-          <li>You may not trade draft picks.</li>
-          
-        </ul>
-      </div>
-      
-      <div class="rule-category">
-        <div class="rule-category-title">📥 Waivers</div>
-        <ul>
-          
-          <li>Waivers process every Wednesday at 4:00 AM ET.</li>
-          
-          <li>Waiver priority is continuous rolling: successful claims move you to last priority.</li>
-          
-          <li>Free agents (after waiver period) are first-come, first-served.</li>
-          
-          <li>You may not drop a player during an active game.</li>
-          
-        </ul>
-      </div>
-      
-      <div class="rule-category">
-        <div class="rule-category-title">🏆 Playoffs</div>
-        <ul>
-          
-          <li>Top 6 teams qualify for playoffs.</li>
-          
-          <li>Seeds 1 and 2 receive a first-round bye.</li>
-          
-          <li>Matchups: (3 vs 6) and (4 vs 5) in the first round.</li>
-          
-          <li>Championship game is played in Week 17.</li>
-          
-          <li>In the event of a playoff tie, the team with more total points for the season advances.</li>
-          
-        </ul>
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- ── Voting ── -->
-  <section id="voting">
-    <h2 class="section-title">Voting Decisions</h2>
-    <div class="vote-list">
-      
-      <div class="vote-card">
-        <span class="vote-date">July 12, 2025</span>
-        <span class="vote-result">Approved (8–2)</span>
-        <span class="vote-topic">Switch to Full PPR Scoring</span>
-        
-        <p class="vote-notes">League voted to move from 0.5 PPR to full PPR starting in the 2025 season.</p>
-        
-      </div>
-      
-      <div class="vote-card">
-        <span class="vote-date">July 12, 2025</span>
-        <span class="vote-result">Approved (7–3)</span>
-        <span class="vote-topic">Add a 3rd Place Consolation Prize</span>
-        
-        <p class="vote-notes">A $75 prize will now be awarded to the third-place finisher to keep more teams engaged in the playoffs.</p>
-        
-      </div>
-      
-      <div class="vote-card">
-        <span class="vote-date">July 12, 2025</span>
-        <span class="vote-result">Approved (9–1)</span>
-        <span class="vote-topic">Increase Roster Size from 14 to 15</span>
-        
-        <p class="vote-notes">One bench spot was added to allow more roster flexibility and bye week management.</p>
-        
-      </div>
-      
-      <div class="vote-card">
-        <span class="vote-date">August 2, 2024</span>
-        <span class="vote-result">Approved (6–4)</span>
-        <span class="vote-topic">Move Trade Deadline from Week 9 to Week 10</span>
-        
-        <p class="vote-notes">Approved for the 2024 season. Owners felt Week 9 was too early given the number of bye weeks.</p>
-        
-      </div>
-      
-      <div class="vote-card">
-        <span class="vote-date">August 2, 2024</span>
-        <span class="vote-result">Approved (10–0)</span>
-        <span class="vote-topic">Allow IR Spot for Injured Players</span>
-        
-        <p class="vote-notes">Unanimous approval. One IR spot added for players with an official IR designation.</p>
-        
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- ── Playoffs ── -->
-  <section id="playoffs">
-    <h2 class="section-title">Playoff Format</h2>
-    <div class="playoff-info">
-      <div class="info-box">
-        <div class="label">📋 Format</div>
-        <div class="value">6-team bracket, 4 weeks</div>
-      </div>
-      <div class="info-box">
-        <div class="label">📅 Weeks</div>
-        <div class="value">Weeks 14–17</div>
-      </div>
-      <div class="info-box">
-        <div class="label">🛌 Byes</div>
-        <div class="value">Seeds 1 and 2 receive a first-round bye (Week 14)</div>
-      </div>
-      <div class="info-box">
-        <div class="label">⚖️ Tiebreaker</div>
-        <div class="value">Total points scored during the regular season.</div>
-      </div>
-    </div>
-    <div class="bracket-list">
-      
-      <div class="bracket-round">
-        <div class="bracket-round-name">Wild Card (Week 14)</div>
-        
-        <div class="bracket-matchup">Seed 3 vs Seed 6</div>
-        
-        <div class="bracket-matchup">Seed 4 vs Seed 5</div>
-        
-      </div>
-      
-      <div class="bracket-round">
-        <div class="bracket-round-name">Semifinals (Week 15)</div>
-        
-        <div class="bracket-matchup">Seed 1 vs lowest remaining</div>
-        
-        <div class="bracket-matchup">Seed 2 vs highest remaining</div>
-        
-      </div>
-      
-      <div class="bracket-round">
-        <div class="bracket-round-name">Championship (Week 17)</div>
-        
-        <div class="bracket-matchup">Semifinal Winner 1 vs Semifinal Winner 2</div>
-        
-      </div>
-      
-    </div>
-  </section>
-
-  <!-- ── Champions ── -->
-  <section id="champions">
-    <h2 class="section-title">Past Champions</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Season</th>
-            <th>Champion</th>
-            <th>Team</th>
-            <th>Record</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td><strong>2024</strong></td>
-            <td>Sam Nguyen</td>
-            <td>Nguyen or Lose</td>
-            <td>10-3</td>
-            <td>1842.5</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2023</strong></td>
-            <td>Chris Weller</td>
-            <td>Weller&#39;s Warriors</td>
-            <td>11-2</td>
-            <td>1901.2</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2022</strong></td>
-            <td>Jordan Kim</td>
-            <td>Kim&#39;s Kickers</td>
-            <td>9-4</td>
-            <td>1763.8</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2021</strong></td>
-            <td>Riley Johnson</td>
-            <td>Johnson&#39;s Juggernauts</td>
-            <td>10-3</td>
-            <td>1812.4</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2020</strong></td>
-            <td>Alex Patel</td>
-            <td>Patel&#39;s Playmakers</td>
-            <td>9-4</td>
-            <td>1698.1</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2019</strong></td>
-            <td>Jamie Torres</td>
-            <td>Torres Tornadoes</td>
-            <td>12-1</td>
-            <td>1957.6</td>
-          </tr>
-          
-          <tr>
-            <td><strong>2018</strong></td>
-            <td>Chris Weller</td>
-            <td>Weller&#39;s Warriors</td>
-            <td>8-5</td>
-            <td>1645.3</td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ── Records ── -->
-  <section id="records">
-    <h2 class="section-title">League Records</h2>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Record</th>
-            <th>Holder</th>
-            <th>Value</th>
-            <th>Season</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td>🏆 Most Points in a Season</td>
-            <td>Jamie Torres</td>
-            <td><strong>1,957.6 pts</strong></td>
-            <td>2019</td>
-          </tr>
-          
-          <tr>
-            <td>📈 Best Regular Season Record</td>
-            <td>Jamie Torres</td>
-            <td><strong>12-1</strong></td>
-            <td>2019</td>
-          </tr>
-          
-          <tr>
-            <td>💥 Highest Single-Week Score</td>
-            <td>Chris Weller</td>
-            <td><strong>217.4 pts</strong></td>
-            <td>2023</td>
-          </tr>
-          
-          <tr>
-            <td>😬 Lowest Single-Week Score</td>
-            <td>Drew Martinez</td>
-            <td><strong>48.2 pts</strong></td>
-            <td>2021</td>
-          </tr>
-          
-          <tr>
-            <td>🏅 Most Titles</td>
-            <td>Chris Weller</td>
-            <td><strong>2 titles</strong></td>
-            <td>All-time</td>
-          </tr>
-          
-          <tr>
-            <td>📉 Worst Season Record</td>
-            <td>Taylor Wilson</td>
-            <td><strong>2-11</strong></td>
-            <td>2022</td>
-          </tr>
-          
-          <tr>
-            <td>🔥 Longest Win Streak</td>
-            <td>Jamie Torres</td>
-            <td><strong>9 games</strong></td>
-            <td>2019</td>
-          </tr>
-          
-          <tr>
-            <td>❄️ Longest Losing Streak</td>
-            <td>Morgan Davis</td>
-            <td><strong>8 games</strong></td>
-            <td>2020</td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-</main>
-
-<!-- ── Footer ── -->
-<footer>
-  <p>
-    <strong>Backyard Bowl Fantasy League</strong> &mdash; 2025 Season
-    &nbsp;|&nbsp; Commissioner: Chris Weller
-    &nbsp;|&nbsp; Platform: ESPN
-  </p>
-  <p style="margin-top:0.4rem; color:#6ee7b7;">
-    Last updated: July 20, 2026 at 08:48 PM
-  </p>
-</footer>
-
+  </footer>
 </body>
 </html>

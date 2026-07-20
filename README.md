@@ -75,12 +75,15 @@ pip install -r requirements.txt
 
 Open `data/league.json` in any text editor and update it with your league's real information. The file contains sample data for all sections:
 
-- **league** — Name, season, commissioner, platform
+- **league** — Name, season, commissioner, platform, branding
+- **dashboard** — Highlight cards for the homepage overview
+- **important_dates** — Timeline items for deadlines, events, and payouts
 - **members** — Each owner's name, team name, and emoji
-- **draft** — Date, time, type, order, location
-- **prizes** — Entry fee, total pool, prize breakdown
+- **draft** — Date, time, type, order, and location
+- **prizes** — Entry fee, total pool, and prize breakdown
 - **rules** — Organized by category
-- **voting** — Past league votes and results
+- **voting** — Simple vote recap cards with selected option and vote totals
+- **commissioner_notes** — Preseason announcements and expectations
 - **playoffs** — Bracket format and tiebreaker rules
 - **champions** — Year-by-year past champions
 - **records** — All-time league records
