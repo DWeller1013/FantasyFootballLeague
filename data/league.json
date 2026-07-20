@@ -1,0 +1,164 @@
+{
+  "league": {
+    "name": "Backyard Bowl Fantasy League",
+    "season": 2025,
+    "platform": "ESPN",
+    "commissioner": "Chris Weller",
+    "founded": 2018,
+    "tagline": "Where bragging rights are everything."
+  },
+  "members": [
+    { "name": "Chris Weller",    "team_name": "Weller's Warriors",      "emoji": "⚔️" },
+    { "name": "Jamie Torres",    "team_name": "Torres Tornadoes",        "emoji": "🌪️" },
+    { "name": "Sam Nguyen",      "team_name": "Nguyen or Lose",          "emoji": "🏆" },
+    { "name": "Alex Patel",      "team_name": "Patel's Playmakers",      "emoji": "🎯" },
+    { "name": "Jordan Kim",      "team_name": "Kim's Kickers",           "emoji": "🦵" },
+    { "name": "Riley Johnson",   "team_name": "Johnson's Juggernauts",   "emoji": "💪" },
+    { "name": "Morgan Davis",    "team_name": "Davis Destroyers",        "emoji": "💥" },
+    { "name": "Casey Brown",     "team_name": "Brown's Blitz",           "emoji": "⚡" },
+    { "name": "Taylor Wilson",   "team_name": "Wilson's Wildcards",      "emoji": "🃏" },
+    { "name": "Drew Martinez",   "team_name": "Martinez Machine",        "emoji": "🤖" }
+  ],
+  "draft": {
+    "date": "August 24, 2025",
+    "time": "7:00 PM ET",
+    "type": "Snake Draft",
+    "rounds": 15,
+    "seconds_per_pick": 90,
+    "location": "Chris's backyard / ESPN App",
+    "order": [
+      "Sam Nguyen",
+      "Jordan Kim",
+      "Alex Patel",
+      "Riley Johnson",
+      "Morgan Davis",
+      "Casey Brown",
+      "Taylor Wilson",
+      "Drew Martinez",
+      "Jamie Torres",
+      "Chris Weller"
+    ],
+    "note": "Draft order was determined by a random number draw at the end of last season's championship game."
+  },
+  "prizes": {
+    "entry_fee": 50,
+    "total_pool": 500,
+    "breakdown": [
+      { "place": "🥇 1st Place Champion",  "amount": 250, "description": "Regular season winner-take-most" },
+      { "place": "🥈 2nd Place Runner-Up", "amount": 150, "description": "Runner-up prize" },
+      { "place": "🥉 3rd Place",           "amount":  75, "description": "Third place consolation" },
+      { "place": "📈 Most Points Scored",  "amount":  25, "description": "Highest total points across all weeks" }
+    ],
+    "notes": "All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game."
+  },
+  "rules": [
+    {
+      "category": "📋 General",
+      "entries": [
+        "This is a 10-team, full-PPR (point per reception) league.",
+        "Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.",
+        "The top 6 teams advance to the playoffs.",
+        "All roster moves must be made before the weekly NFL game lock."
+      ]
+    },
+    {
+      "category": "🏈 Roster",
+      "entries": [
+        "Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.",
+        "Bench: 6 spots.",
+        "IR spot: 1 spot (player must have official IR designation).",
+        "Maximum of 2 players from any single NFL team on your active roster."
+      ]
+    },
+    {
+      "category": "🔁 Trades",
+      "entries": [
+        "Trade deadline is the end of Week 10.",
+        "All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.",
+        "Trades process after a 24-hour review period unless vetoed.",
+        "You may not trade draft picks."
+      ]
+    },
+    {
+      "category": "📥 Waivers",
+      "entries": [
+        "Waivers process every Wednesday at 4:00 AM ET.",
+        "Waiver priority is continuous rolling: successful claims move you to last priority.",
+        "Free agents (after waiver period) are first-come, first-served.",
+        "You may not drop a player during an active game."
+      ]
+    },
+    {
+      "category": "🏆 Playoffs",
+      "entries": [
+        "Top 6 teams qualify for playoffs.",
+        "Seeds 1 and 2 receive a first-round bye.",
+        "Matchups: (3 vs 6) and (4 vs 5) in the first round.",
+        "Championship game is played in Week 17.",
+        "In the event of a playoff tie, the team with more total points for the season advances."
+      ]
+    }
+  ],
+  "voting": [
+    {
+      "date": "July 12, 2025",
+      "topic": "Switch to Full PPR Scoring",
+      "result": "Approved (8–2)",
+      "notes": "League voted to move from 0.5 PPR to full PPR starting in the 2025 season."
+    },
+    {
+      "date": "July 12, 2025",
+      "topic": "Add a 3rd Place Consolation Prize",
+      "result": "Approved (7–3)",
+      "notes": "A $75 prize will now be awarded to the third-place finisher to keep more teams engaged in the playoffs."
+    },
+    {
+      "date": "July 12, 2025",
+      "topic": "Increase Roster Size from 14 to 15",
+      "result": "Approved (9–1)",
+      "notes": "One bench spot was added to allow more roster flexibility and bye week management."
+    },
+    {
+      "date": "August 2, 2024",
+      "topic": "Move Trade Deadline from Week 9 to Week 10",
+      "result": "Approved (6–4)",
+      "notes": "Approved for the 2024 season. Owners felt Week 9 was too early given the number of bye weeks."
+    },
+    {
+      "date": "August 2, 2024",
+      "topic": "Allow IR Spot for Injured Players",
+      "result": "Approved (10–0)",
+      "notes": "Unanimous approval. One IR spot added for players with an official IR designation."
+    }
+  ],
+  "playoffs": {
+    "format": "6-team bracket, 4 weeks",
+    "weeks": "Weeks 14–17",
+    "byes": "Seeds 1 and 2 receive a first-round bye (Week 14)",
+    "bracket": [
+      { "round": "Wild Card (Week 14)",  "matchups": ["Seed 3 vs Seed 6", "Seed 4 vs Seed 5"] },
+      { "round": "Semifinals (Week 15)", "matchups": ["Seed 1 vs lowest remaining", "Seed 2 vs highest remaining"] },
+      { "round": "Championship (Week 17)", "matchups": ["Semifinal Winner 1 vs Semifinal Winner 2"] }
+    ],
+    "tiebreaker": "Total points scored during the regular season."
+  },
+  "champions": [
+    { "season": 2024, "champion": "Sam Nguyen",    "team": "Nguyen or Lose",       "record": "10-3", "points": 1842.5 },
+    { "season": 2023, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "11-2", "points": 1901.2 },
+    { "season": 2022, "champion": "Jordan Kim",    "team": "Kim's Kickers",        "record": "9-4",  "points": 1763.8 },
+    { "season": 2021, "champion": "Riley Johnson", "team": "Johnson's Juggernauts","record": "10-3", "points": 1812.4 },
+    { "season": 2020, "champion": "Alex Patel",    "team": "Patel's Playmakers",   "record": "9-4",  "points": 1698.1 },
+    { "season": 2019, "champion": "Jamie Torres",  "team": "Torres Tornadoes",     "record": "12-1", "points": 1957.6 },
+    { "season": 2018, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "8-5",  "points": 1645.3 }
+  ],
+  "records": [
+    { "category": "🏆 Most Points in a Season",     "holder": "Jamie Torres",   "value": "1,957.6 pts",  "season": 2019 },
+    { "category": "📈 Best Regular Season Record",  "holder": "Jamie Torres",   "value": "12-1",         "season": 2019 },
+    { "category": "💥 Highest Single-Week Score",   "holder": "Chris Weller",   "value": "217.4 pts",    "season": 2023 },
+    { "category": "😬 Lowest Single-Week Score",    "holder": "Drew Martinez",  "value": "48.2 pts",     "season": 2021 },
+    { "category": "🏅 Most Titles",                 "holder": "Chris Weller",   "value": "2 titles",     "season": null },
+    { "category": "📉 Worst Season Record",         "holder": "Taylor Wilson",  "value": "2-11",         "season": 2022 },
+    { "category": "🔥 Longest Win Streak",          "holder": "Jamie Torres",   "value": "9 games",      "season": 2019 },
+    { "category": "❄️ Longest Losing Streak",       "holder": "Morgan Davis",   "value": "8 games",      "season": 2020 }
+  ]
+}
