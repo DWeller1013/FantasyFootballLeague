@@ -367,6 +367,10 @@
       margin-bottom: 0.65rem;
     }
 
+    .card-label-spaced {
+      margin-bottom: 0.9rem;
+    }
+
     .dashboard-value {
       font-size: 1.65rem;
       font-weight: 800;
@@ -1020,7 +1024,7 @@
           </div>
 
           <div>
-            <div class="card-label" style="margin-bottom:0.9rem;">Draft order</div>
+            <div class="card-label card-label-spaced">Draft order</div>
             <div class="draft-order">
               {% for owner in draft.order %}
               <article class="draft-pick">
