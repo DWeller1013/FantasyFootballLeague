@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backyard Bowl Fantasy League — 2025 Handbook</title>
+  <style>
+    /* ── Reset & Base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #1a472a;
+      --green-mid:  #2d6a4f;
+      --green-light:#52b788;
+      --gold:       #f4a922;
+      --gold-light: #fde68a;
+      --bg:         #f8f9fa;
+      --surface:    #ffffff;
+      --text:       #1c1c1e;
+      --muted:      #6c757d;
+      --border:     #dee2e6;
+      --radius:     12px;
+      --shadow:     0 2px 12px rgba(0,0,0,.08);
+      --nav-h:      60px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── Navigation ────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--green);
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+
+    .nav-brand {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.05rem;
+      white-space: nowrap;
+      margin-right: auto;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a {
+      color: #d1fae5;
+      text-decoration: none;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+
+    .nav-links a:hover { background: var(--green-mid); color: #fff; }
+
+    /* ── Hero ──────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .hero-emoji { font-size: 3.5rem; margin-bottom: 0.5rem; }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-top: 0.4rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.05rem;
+      color: #a7f3d0;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .badge {
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.85rem;
+      color: #e0fdf4;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────── */
+    main { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+    section { margin-bottom: 2.5rem; }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--green);
+      border-bottom: 3px solid var(--gold);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Cards ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.5rem;
+    }
+
+    /* ── Members Grid ──────────────────────────────────────────── */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .member-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      text-align: center;
+      border-top: 4px solid var(--green-light);
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .member-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+
+    .member-emoji { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .member-team { font-weight: 700; font-size: 0.9rem; color: var(--green); }
+    .member-name { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── Tables ────────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      font-size: 0.92rem;
+    }
+
+    thead th {
+      background: var(--green);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+
+    thead th:first-child { border-radius: var(--radius) 0 0 0; }
+    thead th:last-child  { border-radius: 0 var(--radius) 0 0; }
+
+    tbody tr:nth-child(even) { background: #f0fdf4; }
+
+    td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    .rank-cell {
+      font-weight: 700;
+      color: var(--green);
+      width: 2.5rem;
+    }
+
+    /* ── Draft Info ─────────────────────────────────────────────── */
+    .draft-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .info-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0.9rem 1rem;
+      border-left: 4px solid var(--green-light);
+    }
+
+    .info-box .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+    .info-box .value { font-weight: 700; font-size: 1rem; color: var(--text); margin-top: 0.15rem; }
+
+    /* ── Prizes ─────────────────────────────────────────────────── */
+    .prize-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .prize-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 0.8rem 1.1rem;
+      gap: 1rem;
+    }
+
+    .prize-place { font-weight: 600; flex: 1; }
+    .prize-desc  { font-size: 0.82rem; color: var(--muted); flex: 2; }
+    .prize-amt   { font-weight: 800; font-size: 1.05rem; color: var(--green); white-space: nowrap; }
+
+    .prize-total {
+      margin-top: 0.75rem;
+      text-align: right;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .prize-notes {
+      margin-top: 0.75rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: #f0fdf4;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--green-light);
+    }
+
+    /* ── Rules ──────────────────────────────────────────────────── */
+    .rules-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .rule-category {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .rule-category-title {
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .rule-category ul {
+      list-style: none;
+      padding: 0.5rem 1rem 0.75rem;
+    }
+
+    .rule-category li {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    .rule-category li:last-child { border-bottom: none; }
+
+    .rule-category li::before {
+      content: "✓ ";
+      color: var(--green-light);
+      font-weight: 700;
+    }
+
+    /* ── Voting ─────────────────────────────────────────────────── */
+    .vote-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .vote-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.25rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem 1rem;
+      align-items: start;
+    }
+
+    .vote-date {
+      grid-column: 1 / -1;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .vote-result {
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: #d1fae5;
+      color: var(--green);
+      border-radius: 20px;
+      padding: 0.2rem 0.65rem;
+      white-space: nowrap;
+      align-self: center;
+    }
+
+    .vote-topic { font-weight: 600; align-self: center; }
+
+    .vote-notes {
+      grid-column: 1 / -1;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    /* ── Playoffs ────────────────────────────────────────────────── */
+    .playoff-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.25rem; }
+
+    .bracket-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .bracket-round {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.25rem;
+    }
+
+    .bracket-round-name {
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .bracket-matchup {
+      font-size: 0.88rem;
+      color: var(--text);
+      padding: 0.2rem 0;
+    }
+
+    .bracket-matchup::before { content: "🏈 "; }
+
+    /* ── Champions ───────────────────────────────────────────────── */
+
+    /* ── Records ─────────────────────────────────────────────────── */
+
+    /* ── Footer ──────────────────────────────────────────────────── */
+    footer {
+      background: var(--green);
+      color: #a7f3d0;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.83rem;
+    }
+
+    footer strong { color: var(--gold); }
+
+    /* ── Utility ─────────────────────────────────────────────────── */
+    .note {
+      font-size: 0.83rem;
+      color: var(--muted);
+      background: #f0fdf4;
+      border-left: 3px solid var(--green-light);
+      padding: 0.5rem 0.8rem;
+      border-radius: 0 6px 6px 0;
+      margin-top: 0.75rem;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .prize-row { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .vote-card { grid-template-columns: 1fr; }
+      .vote-result { justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a class="nav-brand" href="#top">🏈 Backyard Bowl Fantasy League</a>
+  <ul class="nav-links">
+    <li><a href="#members">Members</a></li>
+    <li><a href="#draft">Draft</a></li>
+    <li><a href="#prizes">Prizes</a></li>
+    <li><a href="#rules">Rules</a></li>
+    <li><a href="#voting">Voting</a></li>
+    <li><a href="#playoffs">Playoffs</a></li>
+    <li><a href="#champions">Champions</a></li>
+    <li><a href="#records">Records</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<div class="hero" id="top">
+  <div class="hero-emoji">🏈</div>
+  <h1>Backyard Bowl Fantasy League</h1>
+  <p class="hero-sub">2025 Season Handbook</p>
+  
+  <p class="hero-tagline">"Where bragging rights are everything."</p>
+  
+  <div class="hero-meta">
+    <span class="badge">📅 Season 2025</span>
+    <span class="badge">👑 Commissioner: Chris Weller</span>
+    <span class="badge">📱 Platform: ESPN</span>
+    <span class="badge">🗓️ Founded 2018</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── Members ── -->
+  <section id="members">
+    <h2 class="section-title">League Members</h2>
+    <div class="members-grid">
+      
+      <div class="member-card">
+        <div class="member-emoji">⚔️</div>
+        <div class="member-team">Weller&#39;s Warriors</div>
+        <div class="member-name">Chris Weller</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🌪️</div>
+        <div class="member-team">Torres Tornadoes</div>
+        <div class="member-name">Jamie Torres</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🏆</div>
+        <div class="member-team">Nguyen or Lose</div>
+        <div class="member-name">Sam Nguyen</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🎯</div>
+        <div class="member-team">Patel&#39;s Playmakers</div>
+        <div class="member-name">Alex Patel</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🦵</div>
+        <div class="member-team">Kim&#39;s Kickers</div>
+        <div class="member-name">Jordan Kim</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">💪</div>
+        <div class="member-team">Johnson&#39;s Juggernauts</div>
+        <div class="member-name">Riley Johnson</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">💥</div>
+        <div class="member-team">Davis Destroyers</div>
+        <div class="member-name">Morgan Davis</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">⚡</div>
+        <div class="member-team">Brown&#39;s Blitz</div>
+        <div class="member-name">Casey Brown</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🃏</div>
+        <div class="member-team">Wilson&#39;s Wildcards</div>
+        <div class="member-name">Taylor Wilson</div>
+      </div>
+      
+      <div class="member-card">
+        <div class="member-emoji">🤖</div>
+        <div class="member-team">Martinez Machine</div>
+        <div class="member-name">Drew Martinez</div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ── Draft ── -->
+  <section id="draft">
+    <h2 class="section-title">Draft Details</h2>
+    <div class="draft-info">
+      <div class="info-box">
+        <div class="label">📅 Date</div>
+        <div class="value">August 24, 2025</div>
+      </div>
+      <div class="info-box">
+        <div class="label">🕖 Time</div>
+        <div class="value">7:00 PM ET</div>
+      </div>
+      <div class="info-box">
+        <div class="label">📋 Type</div>
+        <div class="value">Snake Draft</div>
+      </div>
+      <div class="info-box">
+        <div class="label">🔢 Rounds</div>
+        <div class="value">15</div>
+      </div>
+      <div class="info-box">
+        <div class="label">⏱️ Seconds/Pick</div>
+        <div class="value">90s</div>
+      </div>
+      <div class="info-box">
+        <div class="label">📍 Location</div>
+        <div class="value">Chris&#39;s backyard / ESPN App</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Pick</th>
+            <th>Manager</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td class="rank-cell">#1</td>
+            <td>Sam Nguyen</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#2</td>
+            <td>Jordan Kim</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#3</td>
+            <td>Alex Patel</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#4</td>
+            <td>Riley Johnson</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#5</td>
+            <td>Morgan Davis</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#6</td>
+            <td>Casey Brown</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#7</td>
+            <td>Taylor Wilson</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#8</td>
+            <td>Drew Martinez</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#9</td>
+            <td>Jamie Torres</td>
+          </tr>
+          
+          <tr>
+            <td class="rank-cell">#10</td>
+            <td>Chris Weller</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+    <p class="note">📝 Draft order was determined by a random number draw at the end of last season&#39;s championship game.</p>
+    
+  </section>
+
+  <!-- ── Prizes ── -->
+  <section id="prizes">
+    <h2 class="section-title">Prize Pool</h2>
+    <div class="prize-list">
+      
+      <div class="prize-row">
+        <span class="prize-place">🥇 1st Place Champion</span>
+        <span class="prize-desc">Regular season winner-take-most</span>
+        <span class="prize-amt">$250</span>
+      </div>
+      
+      <div class="prize-row">
+        <span class="prize-place">🥈 2nd Place Runner-Up</span>
+        <span class="prize-desc">Runner-up prize</span>
+        <span class="prize-amt">$150</span>
+      </div>
+      
+      <div class="prize-row">
+        <span class="prize-place">🥉 3rd Place</span>
+        <span class="prize-desc">Third place consolation</span>
+        <span class="prize-amt">$75</span>
+      </div>
+      
+      <div class="prize-row">
+        <span class="prize-place">📈 Most Points Scored</span>
+        <span class="prize-desc">Highest total points across all weeks</span>
+        <span class="prize-amt">$25</span>
+      </div>
+      
+    </div>
+    <p class="prize-total">
+      Entry fee: $50 per team &nbsp;|&nbsp;
+      Total pool: <strong>$500</strong>
+    </p>
+    
+    <p class="prize-notes">📝 All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game.</p>
+    
+  </section>
+
+  <!-- ── Rules ── -->
+  <section id="rules">
+    <h2 class="section-title">League Rules</h2>
+    <div class="rules-list">
+      
+      <div class="rule-category">
+        <div class="rule-category-title">📋 General</div>
+        <ul>
+          
+          <li>This is a 10-team, full-PPR (point per reception) league.</li>
+          
+          <li>Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.</li>
+          
+          <li>The top 6 teams advance to the playoffs.</li>
+          
+          <li>All roster moves must be made before the weekly NFL game lock.</li>
+          
+        </ul>
+      </div>
+      
+      <div class="rule-category">
+        <div class="rule-category-title">🏈 Roster</div>
+        <ul>
+          
+          <li>Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.</li>
+          
+          <li>Bench: 6 spots.</li>
+          
+          <li>IR spot: 1 spot (player must have official IR designation).</li>
+          
+          <li>Maximum of 2 players from any single NFL team on your active roster.</li>
+          
+        </ul>
+      </div>
+      
+      <div class="rule-category">
+        <div class="rule-category-title">🔁 Trades</div>
+        <ul>
+          
+          <li>Trade deadline is the end of Week 10.</li>
+          
+          <li>All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.</li>
+          
+          <li>Trades process after a 24-hour review period unless vetoed.</li>
+          
+          <li>You may not trade draft picks.</li>
+          
+        </ul>
+      </div>
+      
+      <div class="rule-category">
+        <div class="rule-category-title">📥 Waivers</div>
+        <ul>
+          
+          <li>Waivers process every Wednesday at 4:00 AM ET.</li>
+          
+          <li>Waiver priority is continuous rolling: successful claims move you to last priority.</li>
+          
+          <li>Free agents (after waiver period) are first-come, first-served.</li>
+          
+          <li>You may not drop a player during an active game.</li>
+          
+        </ul>
+      </div>
+      
+      <div class="rule-category">
+        <div class="rule-category-title">🏆 Playoffs</div>
+        <ul>
+          
+          <li>Top 6 teams qualify for playoffs.</li>
+          
+          <li>Seeds 1 and 2 receive a first-round bye.</li>
+          
+          <li>Matchups: (3 vs 6) and (4 vs 5) in the first round.</li>
+          
+          <li>Championship game is played in Week 17.</li>
+          
+          <li>In the event of a playoff tie, the team with more total points for the season advances.</li>
+          
+        </ul>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ── Voting ── -->
+  <section id="voting">
+    <h2 class="section-title">Voting Decisions</h2>
+    <div class="vote-list">
+      
+      <div class="vote-card">
+        <span class="vote-date">July 12, 2025</span>
+        <span class="vote-result">Approved (8–2)</span>
+        <span class="vote-topic">Switch to Full PPR Scoring</span>
+        
+        <p class="vote-notes">League voted to move from 0.5 PPR to full PPR starting in the 2025 season.</p>
+        
+      </div>
+      
+      <div class="vote-card">
+        <span class="vote-date">July 12, 2025</span>
+        <span class="vote-result">Approved (7–3)</span>
+        <span class="vote-topic">Add a 3rd Place Consolation Prize</span>
+        
+        <p class="vote-notes">A $75 prize will now be awarded to the third-place finisher to keep more teams engaged in the playoffs.</p>
+        
+      </div>
+      
+      <div class="vote-card">
+        <span class="vote-date">July 12, 2025</span>
+        <span class="vote-result">Approved (9–1)</span>
+        <span class="vote-topic">Increase Roster Size from 14 to 15</span>
+        
+        <p class="vote-notes">One bench spot was added to allow more roster flexibility and bye week management.</p>
+        
+      </div>
+      
+      <div class="vote-card">
+        <span class="vote-date">August 2, 2024</span>
+        <span class="vote-result">Approved (6–4)</span>
+        <span class="vote-topic">Move Trade Deadline from Week 9 to Week 10</span>
+        
+        <p class="vote-notes">Approved for the 2024 season. Owners felt Week 9 was too early given the number of bye weeks.</p>
+        
+      </div>
+      
+      <div class="vote-card">
+        <span class="vote-date">August 2, 2024</span>
+        <span class="vote-result">Approved (10–0)</span>
+        <span class="vote-topic">Allow IR Spot for Injured Players</span>
+        
+        <p class="vote-notes">Unanimous approval. One IR spot added for players with an official IR designation.</p>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ── Playoffs ── -->
+  <section id="playoffs">
+    <h2 class="section-title">Playoff Format</h2>
+    <div class="playoff-info">
+      <div class="info-box">
+        <div class="label">📋 Format</div>
+        <div class="value">6-team bracket, 4 weeks</div>
+      </div>
+      <div class="info-box">
+        <div class="label">📅 Weeks</div>
+        <div class="value">Weeks 14–17</div>
+      </div>
+      <div class="info-box">
+        <div class="label">🛌 Byes</div>
+        <div class="value">Seeds 1 and 2 receive a first-round bye (Week 14)</div>
+      </div>
+      <div class="info-box">
+        <div class="label">⚖️ Tiebreaker</div>
+        <div class="value">Total points scored during the regular season.</div>
+      </div>
+    </div>
+    <div class="bracket-list">
+      
+      <div class="bracket-round">
+        <div class="bracket-round-name">Wild Card (Week 14)</div>
+        
+        <div class="bracket-matchup">Seed 3 vs Seed 6</div>
+        
+        <div class="bracket-matchup">Seed 4 vs Seed 5</div>
+        
+      </div>
+      
+      <div class="bracket-round">
+        <div class="bracket-round-name">Semifinals (Week 15)</div>
+        
+        <div class="bracket-matchup">Seed 1 vs lowest remaining</div>
+        
+        <div class="bracket-matchup">Seed 2 vs highest remaining</div>
+        
+      </div>
+      
+      <div class="bracket-round">
+        <div class="bracket-round-name">Championship (Week 17)</div>
+        
+        <div class="bracket-matchup">Semifinal Winner 1 vs Semifinal Winner 2</div>
+        
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ── Champions ── -->
+  <section id="champions">
+    <h2 class="section-title">Past Champions</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Season</th>
+            <th>Champion</th>
+            <th>Team</th>
+            <th>Record</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><strong>2024</strong></td>
+            <td>Sam Nguyen</td>
+            <td>Nguyen or Lose</td>
+            <td>10-3</td>
+            <td>1842.5</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2023</strong></td>
+            <td>Chris Weller</td>
+            <td>Weller&#39;s Warriors</td>
+            <td>11-2</td>
+            <td>1901.2</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2022</strong></td>
+            <td>Jordan Kim</td>
+            <td>Kim&#39;s Kickers</td>
+            <td>9-4</td>
+            <td>1763.8</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2021</strong></td>
+            <td>Riley Johnson</td>
+            <td>Johnson&#39;s Juggernauts</td>
+            <td>10-3</td>
+            <td>1812.4</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2020</strong></td>
+            <td>Alex Patel</td>
+            <td>Patel&#39;s Playmakers</td>
+            <td>9-4</td>
+            <td>1698.1</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2019</strong></td>
+            <td>Jamie Torres</td>
+            <td>Torres Tornadoes</td>
+            <td>12-1</td>
+            <td>1957.6</td>
+          </tr>
+          
+          <tr>
+            <td><strong>2018</strong></td>
+            <td>Chris Weller</td>
+            <td>Weller&#39;s Warriors</td>
+            <td>8-5</td>
+            <td>1645.3</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── Records ── -->
+  <section id="records">
+    <h2 class="section-title">League Records</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Record</th>
+            <th>Holder</th>
+            <th>Value</th>
+            <th>Season</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>🏆 Most Points in a Season</td>
+            <td>Jamie Torres</td>
+            <td><strong>1,957.6 pts</strong></td>
+            <td>2019</td>
+          </tr>
+          
+          <tr>
+            <td>📈 Best Regular Season Record</td>
+            <td>Jamie Torres</td>
+            <td><strong>12-1</strong></td>
+            <td>2019</td>
+          </tr>
+          
+          <tr>
+            <td>💥 Highest Single-Week Score</td>
+            <td>Chris Weller</td>
+            <td><strong>217.4 pts</strong></td>
+            <td>2023</td>
+          </tr>
+          
+          <tr>
+            <td>😬 Lowest Single-Week Score</td>
+            <td>Drew Martinez</td>
+            <td><strong>48.2 pts</strong></td>
+            <td>2021</td>
+          </tr>
+          
+          <tr>
+            <td>🏅 Most Titles</td>
+            <td>Chris Weller</td>
+            <td><strong>2 titles</strong></td>
+            <td>All-time</td>
+          </tr>
+          
+          <tr>
+            <td>📉 Worst Season Record</td>
+            <td>Taylor Wilson</td>
+            <td><strong>2-11</strong></td>
+            <td>2022</td>
+          </tr>
+          
+          <tr>
+            <td>🔥 Longest Win Streak</td>
+            <td>Jamie Torres</td>
+            <td><strong>9 games</strong></td>
+            <td>2019</td>
+          </tr>
+          
+          <tr>
+            <td>❄️ Longest Losing Streak</td>
+            <td>Morgan Davis</td>
+            <td><strong>8 games</strong></td>
+            <td>2020</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>
+    <strong>Backyard Bowl Fantasy League</strong> &mdash; 2025 Season
+    &nbsp;|&nbsp; Commissioner: Chris Weller
+    &nbsp;|&nbsp; Platform: ESPN
+  </p>
+  <p style="margin-top:0.4rem; color:#6ee7b7;">
+    Last updated: July 20, 2026 at 08:48 PM
+  </p>
+</footer>
+
+</body>
+</html>
