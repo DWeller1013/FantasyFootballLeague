@@ -417,14 +417,14 @@
 <nav>
   <a class="nav-brand" href="#top">🏈 {{ league.name }}</a>
   <ul class="nav-links">
-    {% if members %}<li><a href="#members">Members</a></li>{% endif %}
-    {% if draft %}<li><a href="#draft">Draft</a></li>{% endif %}
-    {% if prizes %}<li><a href="#prizes">Prizes</a></li>{% endif %}
-    {% if rules %}<li><a href="#rules">Rules</a></li>{% endif %}
-    {% if voting %}<li><a href="#voting">Voting</a></li>{% endif %}
-    {% if playoffs %}<li><a href="#playoffs">Playoffs</a></li>{% endif %}
-    {% if champions %}<li><a href="#champions">Champions</a></li>{% endif %}
-    {% if records %}<li><a href="#records">Records</a></li>{% endif %}
+    {% if members is not none and members %}<li><a href="#members">Members</a></li>{% endif %}
+    {% if draft is not none and draft %}<li><a href="#draft">Draft</a></li>{% endif %}
+    {% if prizes is not none and prizes %}<li><a href="#prizes">Prizes</a></li>{% endif %}
+    {% if rules is not none and rules %}<li><a href="#rules">Rules</a></li>{% endif %}
+    {% if voting is not none and voting %}<li><a href="#voting">Voting</a></li>{% endif %}
+    {% if playoffs is not none and playoffs %}<li><a href="#playoffs">Playoffs</a></li>{% endif %}
+    {% if champions is not none and champions %}<li><a href="#champions">Champions</a></li>{% endif %}
+    {% if records is not none and records %}<li><a href="#records">Records</a></li>{% endif %}
   </ul>
 </nav>
 
@@ -453,7 +453,7 @@
 <main>
 
   <!-- ── Members ── -->
-  {% if members %}
+  {% if members is not none and members %}
   <section id="members">
     <h2 class="section-title">League Members</h2>
     <div class="members-grid">
@@ -469,7 +469,7 @@
   {% endif %}
 
   <!-- ── Draft ── -->
-  {% if draft %}
+  {% if draft is not none and draft %}
   <section id="draft">
     <h2 class="section-title">Draft Details</h2>
     <div class="draft-info">
@@ -538,7 +538,7 @@
   {% endif %}
 
   <!-- ── Prizes ── -->
-  {% if prizes %}
+  {% if prizes is not none and prizes %}
   <section id="prizes">
     <h2 class="section-title">Prize Pool</h2>
     {% if prizes.breakdown %}
@@ -572,7 +572,7 @@
   {% endif %}
 
   <!-- ── Rules ── -->
-  {% if rules %}
+  {% if rules is not none and rules %}
   <section id="rules">
     <h2 class="section-title">League Rules</h2>
     <div class="rules-list">
@@ -593,7 +593,7 @@
   {% endif %}
 
   <!-- ── Voting ── -->
-  {% if voting %}
+  {% if voting is not none and voting %}
   <section id="voting">
     <h2 class="section-title">Voting Decisions</h2>
     <div class="vote-list">
@@ -612,7 +612,7 @@
   {% endif %}
 
   <!-- ── Playoffs ── -->
-  {% if playoffs %}
+  {% if playoffs is not none and playoffs %}
   <section id="playoffs">
     <h2 class="section-title">Playoff Format</h2>
     <div class="playoff-info">
@@ -657,7 +657,7 @@
   {% endif %}
 
   <!-- ── Champions ── -->
-  {% if champions %}
+  {% if champions is not none and champions %}
   <section id="champions">
     <h2 class="section-title">Past Champions</h2>
     <div class="table-wrap">
@@ -688,7 +688,7 @@
   {% endif %}
 
   <!-- ── Records ── -->
-  {% if records %}
+  {% if records is not none and records %}
   <section id="records">
     <h2 class="section-title">League Records</h2>
     <div class="table-wrap">

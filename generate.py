@@ -204,14 +204,14 @@ def build_context(data: dict) -> dict:
     """Build a render context with safe defaults for optional sections."""
     return {
         "league": data["league"],
-        "members": data.get("members", []),
-        "draft": data.get("draft", {}),
-        "prizes": data.get("prizes", {}),
-        "rules": data.get("rules", []),
-        "voting": data.get("voting", []),
-        "playoffs": data.get("playoffs", {}),
-        "champions": data.get("champions", []),
-        "records": data.get("records", []),
+        "members": data.get("members"),
+        "draft": data.get("draft"),
+        "prizes": data.get("prizes"),
+        "rules": data.get("rules"),
+        "voting": data.get("voting"),
+        "playoffs": data.get("playoffs"),
+        "champions": data.get("champions"),
+        "records": data.get("records"),
         "generated_on": datetime.now().strftime("%B %d, %Y at %I:%M %p"),
     }
 
@@ -241,7 +241,7 @@ def main() -> None:
     try:
         data = load_data(DATA_FILE)
     except json.JSONDecodeError as exc:
-        print(f"❌  Invalid JSON        : {exc}")
+        print(f"❌  Invalid JSON      : {exc}")
         sys.exit(1)
     try:
         validate_data(data)
