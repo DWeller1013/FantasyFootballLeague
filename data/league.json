@@ -1,53 +1,53 @@
 {
   "league": {
-    "name": "Backyard Bowl Fantasy League",
-    "season": 2025,
+    "name": "No you Fantasy League 2026",
+    "season": 2026,
     "platform": "ESPN",
-    "commissioner": "Chris Weller",
-    "founded": 2018,
-    "tagline": "Where bragging rights are everything."
+    "commissioner": "Devin Weller",
+    "founded": 2025,
+    "tagline": "Placeholder"
   },
   "members": [
-    { "name": "Chris Weller",    "team_name": "Weller's Warriors",      "emoji": "⚔️" },
-    { "name": "Jamie Torres",    "team_name": "Torres Tornadoes",        "emoji": "🌪️" },
-    { "name": "Sam Nguyen",      "team_name": "Nguyen or Lose",          "emoji": "🏆" },
-    { "name": "Alex Patel",      "team_name": "Patel's Playmakers",      "emoji": "🎯" },
-    { "name": "Jordan Kim",      "team_name": "Kim's Kickers",           "emoji": "🦵" },
-    { "name": "Riley Johnson",   "team_name": "Johnson's Juggernauts",   "emoji": "💪" },
-    { "name": "Morgan Davis",    "team_name": "Davis Destroyers",        "emoji": "💥" },
-    { "name": "Casey Brown",     "team_name": "Brown's Blitz",           "emoji": "⚡" },
-    { "name": "Taylor Wilson",   "team_name": "Wilson's Wildcards",      "emoji": "🃏" },
-    { "name": "Drew Martinez",   "team_name": "Martinez Machine",        "emoji": "🤖" }
+    { "name": "Devin Weller",    "team_name": "Dirty Dervin",      "emoji": "⚔️" },
+    { "name": "Kenzie Bracey(Weller)",    "team_name": "The Bees Knees",        "emoji": "🐝" },
+    { "name": "Ricky Tysar",      "team_name": "Eggs On Toast Is Pretty Good",          "emoji": "🍳" },
+    { "name": "James Siegel",      "team_name": "Modelo Enjoyer",      "emoji": "🍺" },
+    { "name": "Jordan Tysar",      "team_name": "Stop Resisting",           "emoji": "🛑" },
+    { "name": "Tom Post",   "team_name": "GimmeDatBooty",   "emoji": "🍑" },
+    { "name": "Tyler Ghesquiere",    "team_name": "Rangers Fan Club",        "emoji": "💥" },
+    { "name": "Ryan Granger",     "team_name": "Goku Skin Fortnite",           "emoji": "🐉" },
+    { "name": "Robert Weller",   "team_name": "TBD",      "emoji": "🏆" },
+    { "name": "Jeff Nance",   "team_name": "TBD",        "emoji": "🌪️" }
   ],
   "draft": {
-    "date": "August 24, 2025",
+    "date": "August 24, 2026",
     "time": "7:00 PM ET",
     "type": "Snake Draft",
     "rounds": 15,
     "seconds_per_pick": 90,
-    "location": "Chris's backyard / ESPN App",
+    "location": "Grab your phone / ESPN App",
     "order": [
-      "Sam Nguyen",
-      "Jordan Kim",
-      "Alex Patel",
-      "Riley Johnson",
-      "Morgan Davis",
-      "Casey Brown",
-      "Taylor Wilson",
-      "Drew Martinez",
-      "Jamie Torres",
-      "Chris Weller"
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD",
+      "TBD"
     ],
-    "note": "Draft order was determined by a random number draw at the end of last season's championship game."
+    "note": "Draft order was determined by a random number."
   },
   "prizes": {
-    "entry_fee": 50,
-    "total_pool": 500,
+    "entry_fee": 20,
+    "total_pool": 200,
     "breakdown": [
-      { "place": "🥇 1st Place Champion",  "amount": 250, "description": "Regular season winner-take-most" },
-      { "place": "🥈 2nd Place Runner-Up", "amount": 150, "description": "Runner-up prize" },
-      { "place": "🥉 3rd Place",           "amount":  75, "description": "Third place consolation" },
-      { "place": "📈 Most Points Scored",  "amount":  25, "description": "Highest total points across all weeks" }
+      { "place": "🥇 1st Place Champion",  "amount": 120, "description": "Regular season winner-take-most" },
+      { "place": "🥈 2nd Place Runner-Up", "amount": 40, "description": "Runner-up prize" },
+      { "place": "🥉 3rd Place",           "amount":  20, "description": "Third place consolation" },
+      { "place": "📈 Most Points Scored",  "amount":  20, "description": "Highest total points across all weeks" }
     ],
     "notes": "All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game."
   },
@@ -143,22 +143,15 @@
     "tiebreaker": "Total points scored during the regular season."
   },
   "champions": [
-    { "season": 2024, "champion": "Sam Nguyen",    "team": "Nguyen or Lose",       "record": "10-3", "points": 1842.5 },
-    { "season": 2023, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "11-2", "points": 1901.2 },
-    { "season": 2022, "champion": "Jordan Kim",    "team": "Kim's Kickers",        "record": "9-4",  "points": 1763.8 },
-    { "season": 2021, "champion": "Riley Johnson", "team": "Johnson's Juggernauts","record": "10-3", "points": 1812.4 },
-    { "season": 2020, "champion": "Alex Patel",    "team": "Patel's Playmakers",   "record": "9-4",  "points": 1698.1 },
-    { "season": 2019, "champion": "Jamie Torres",  "team": "Torres Tornadoes",     "record": "12-1", "points": 1957.6 },
-    { "season": 2018, "champion": "Chris Weller",  "team": "Weller's Warriors",    "record": "8-5",  "points": 1645.3 }
+    { "season": 2025, "champion": "Collin Granger",    "team": "village trattors",       "record": "10-3", "points": 1842.5 }
   ],
   "records": [
-    { "category": "🏆 Most Points in a Season",     "holder": "Jamie Torres",   "value": "1,957.6 pts",  "season": 2019 },
-    { "category": "📈 Best Regular Season Record",  "holder": "Jamie Torres",   "value": "12-1",         "season": 2019 },
-    { "category": "💥 Highest Single-Week Score",   "holder": "Chris Weller",   "value": "217.4 pts",    "season": 2023 },
-    { "category": "😬 Lowest Single-Week Score",    "holder": "Drew Martinez",  "value": "48.2 pts",     "season": 2021 },
-    { "category": "🏅 Most Titles",                 "holder": "Chris Weller",   "value": "2 titles",     "season": null },
-    { "category": "📉 Worst Season Record",         "holder": "Taylor Wilson",  "value": "2-11",         "season": 2022 },
-    { "category": "🔥 Longest Win Streak",          "holder": "Jamie Torres",   "value": "9 games",      "season": 2019 },
-    { "category": "❄️ Longest Losing Streak",       "holder": "Morgan Davis",   "value": "8 games",      "season": 2020 }
+    { "category": "🏆 Most Points in a Season",     "holder": "Placeholder",   "value": "1,957.6 pts",  "season": 2025 },
+    { "category": "📈 Best Regular Season Record",  "holder": "Placeholder",   "value": "12-1",         "season": 2025 },
+    { "category": "💥 Highest Single-Week Score",   "holder": "Placeholder",   "value": "217.4 pts",    "season": 2025 },
+    { "category": "😬 Lowest Single-Week Score",    "holder": "Placeholder",  "value": "48.2 pts",     "season": 2025 },
+    { "category": "📉 Worst Season Record",         "holder": "Placeholder",  "value": "2-11",         "season": 2025 },
+    { "category": "🔥 Longest Win Streak",          "holder": "Placeholder",   "value": "9 games",      "season": 2025 },
+    { "category": "❄️ Longest Losing Streak",       "holder": "Placeholder",   "value": "8 games",      "season": 2025 }
   ]
 }
