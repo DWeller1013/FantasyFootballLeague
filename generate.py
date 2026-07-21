@@ -154,7 +154,7 @@ def validate_champions(champions: list) -> None:
         require_field(champion, "champion", str, path)
         require_field(champion, "team", str, path)
         require_field(champion, "record", str, path)
-        require_field(champion, "points", (int, float, str), path)
+        require_field(champion, "points", (int, float), path)
 
 
 def validate_records(records: list) -> None:
@@ -202,15 +202,15 @@ def validate_data(data: dict) -> None:
 def build_context(data: dict) -> dict:
     """Build a render context with safe defaults for optional sections."""
     return {
-        "league":       data["league"],
-        "members":      data.get("members", []),
-        "draft":        data.get("draft", {}),
-        "prizes":       data.get("prizes", {}),
-        "rules":        data.get("rules", []),
-        "voting":       data.get("voting", []),
-        "playoffs":     data.get("playoffs", {}),
-        "champions":    data.get("champions", []),
-        "records":      data.get("records", []),
+        "league": data["league"],
+        "members": data.get("members", []),
+        "draft": data.get("draft", {}),
+        "prizes": data.get("prizes", {}),
+        "rules": data.get("rules", []),
+        "voting": data.get("voting", []),
+        "playoffs": data.get("playoffs", {}),
+        "champions": data.get("champions", []),
+        "records": data.get("records", []),
         "generated_on": datetime.now().strftime("%B %d, %Y at %I:%M %p"),
     }
 
