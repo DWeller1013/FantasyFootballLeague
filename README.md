@@ -105,6 +105,10 @@ Open `data/league.json` in any text editor and update it with your league's real
 - **champions** — Year-by-year past champions
 - **records** — All-time league records
 
+Sections other than `league` are optional. If you remove an optional section entirely, the generator will skip that section on the page.
+
+The generator also validates the JSON structure before rendering and will print a clear error if a provided section has the wrong shape or data type.
+
 ### 6. Generate the page
 
 ```bash

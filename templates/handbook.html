@@ -263,6 +263,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
+      border: none;
     }
 
     .rule-category-title {
@@ -271,22 +272,38 @@
       font-weight: 700;
       padding: 0.6rem 1rem;
       font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .rule-category ul {
+    .rule-category-title::-webkit-details-marker { display: none; }
+
+    .rule-category-title::after {
+      content: "+";
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .rule-category[open] > .rule-category-title::after { content: "-"; }
+
+    .rule-category-content { padding: 0.5rem 1rem 0.75rem; }
+
+    .rule-category-content ul {
       list-style: none;
-      padding: 0.5rem 1rem 0.75rem;
+      padding: 0;
     }
 
-    .rule-category li {
+    .rule-category-content li {
       padding: 0.4rem 0;
       border-bottom: 1px solid var(--border);
       font-size: 0.92rem;
     }
 
-    .rule-category li:last-child { border-bottom: none; }
+    .rule-category-content li:last-child { border-bottom: none; }
 
-    .rule-category li::before {
+    .rule-category-content li::before {
       content: "✓ ";
       color: var(--green-light);
       font-weight: 700;
@@ -400,14 +417,14 @@
 <nav>
   <a class="nav-brand" href="#top">🏈 {{ league.name }}</a>
   <ul class="nav-links">
-    <li><a href="#members">Members</a></li>
-    <li><a href="#draft">Draft</a></li>
-    <li><a href="#prizes">Prizes</a></li>
-    <li><a href="#rules">Rules</a></li>
-    <li><a href="#voting">Voting</a></li>
-    <li><a href="#playoffs">Playoffs</a></li>
-    <li><a href="#champions">Champions</a></li>
-    <li><a href="#records">Records</a></li>
+    {% if members is not none and members %}<li><a href="#members">Members</a></li>{% endif %}
+    {% if draft is not none and draft %}<li><a href="#draft">Draft</a></li>{% endif %}
+    {% if prizes is not none and prizes %}<li><a href="#prizes">Prizes</a></li>{% endif %}
+    {% if rules is not none and rules %}<li><a href="#rules">Rules</a></li>{% endif %}
+    {% if voting is not none and voting %}<li><a href="#voting">Voting</a></li>{% endif %}
+    {% if playoffs is not none and playoffs %}<li><a href="#playoffs">Playoffs</a></li>{% endif %}
+    {% if champions is not none and champions %}<li><a href="#champions">Champions</a></li>{% endif %}
+    {% if records is not none and records %}<li><a href="#records">Records</a></li>{% endif %}
   </ul>
 </nav>
 
@@ -421,15 +438,22 @@
   {% endif %}
   <div class="hero-meta">
     <span class="badge">📅 Season {{ league.season }}</span>
+    {% if league.commissioner %}
     <span class="badge">👑 Commissioner: {{ league.commissioner }}</span>
+    {% endif %}
+    {% if league.platform %}
     <span class="badge">📱 Platform: {{ league.platform }}</span>
+    {% endif %}
+    {% if league.founded %}
     <span class="badge">🗓️ Founded {{ league.founded }}</span>
+    {% endif %}
   </div>
 </div>
 
 <main>
 
   <!-- ── Members ── -->
+  {% if members is not none and members %}
   <section id="members">
     <h2 class="section-title">League Members</h2>
     <div class="members-grid">
@@ -442,37 +466,52 @@
       {% endfor %}
     </div>
   </section>
+  {% endif %}
 
   <!-- ── Draft ── -->
+  {% if draft is not none and draft %}
   <section id="draft">
     <h2 class="section-title">Draft Details</h2>
     <div class="draft-info">
+      {% if draft.date %}
       <div class="info-box">
         <div class="label">📅 Date</div>
         <div class="value">{{ draft.date }}</div>
       </div>
+      {% endif %}
+      {% if draft.time %}
       <div class="info-box">
         <div class="label">🕖 Time</div>
         <div class="value">{{ draft.time }}</div>
       </div>
+      {% endif %}
+      {% if draft.type %}
       <div class="info-box">
         <div class="label">📋 Type</div>
         <div class="value">{{ draft.type }}</div>
       </div>
+      {% endif %}
+      {% if draft.rounds is defined %}
       <div class="info-box">
         <div class="label">🔢 Rounds</div>
         <div class="value">{{ draft.rounds }}</div>
       </div>
+      {% endif %}
+      {% if draft.seconds_per_pick is defined %}
       <div class="info-box">
         <div class="label">⏱️ Seconds/Pick</div>
         <div class="value">{{ draft.seconds_per_pick }}s</div>
       </div>
+      {% endif %}
+      {% if draft.location %}
       <div class="info-box">
         <div class="label">📍 Location</div>
         <div class="value">{{ draft.location }}</div>
       </div>
+      {% endif %}
     </div>
 
+    {% if draft.order %}
     <div class="table-wrap">
       <table>
         <thead>
@@ -491,14 +530,18 @@
         </tbody>
       </table>
     </div>
+    {% endif %}
     {% if draft.note %}
     <p class="note">📝 {{ draft.note }}</p>
     {% endif %}
   </section>
+  {% endif %}
 
   <!-- ── Prizes ── -->
+  {% if prizes is not none and prizes %}
   <section id="prizes">
     <h2 class="section-title">Prize Pool</h2>
+    {% if prizes.breakdown %}
     <div class="prize-list">
       {% for p in prizes.breakdown %}
       <div class="prize-row">
@@ -508,33 +551,49 @@
       </div>
       {% endfor %}
     </div>
+    {% endif %}
+    {% if prizes.entry_fee is defined or prizes.total_pool is defined %}
     <p class="prize-total">
-      Entry fee: ${{ prizes.entry_fee }} per team &nbsp;|&nbsp;
+      {% if prizes.entry_fee is defined %}
+      Entry fee: ${{ prizes.entry_fee }} per team
+      {% endif %}
+      {% if prizes.entry_fee is defined and prizes.total_pool is defined %}
+      &nbsp;|&nbsp;
+      {% endif %}
+      {% if prizes.total_pool is defined %}
       Total pool: <strong>${{ prizes.total_pool }}</strong>
+      {% endif %}
     </p>
+    {% endif %}
     {% if prizes.notes %}
     <p class="prize-notes">📝 {{ prizes.notes }}</p>
     {% endif %}
   </section>
+  {% endif %}
 
   <!-- ── Rules ── -->
+  {% if rules is not none and rules %}
   <section id="rules">
     <h2 class="section-title">League Rules</h2>
     <div class="rules-list">
       {% for section in rules %}
-      <div class="rule-category">
-        <div class="rule-category-title">{{ section.category }}</div>
-        <ul>
-          {% for item in section.entries %}
-          <li>{{ item }}</li>
-          {% endfor %}
-        </ul>
-      </div>
+      <details class="rule-category" {% if loop.first %}open{% endif %}>
+        <summary class="rule-category-title">{{ section.category }}</summary>
+        <div class="rule-category-content">
+          <ul>
+            {% for item in section.entries %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </details>
       {% endfor %}
     </div>
   </section>
+  {% endif %}
 
   <!-- ── Voting ── -->
+  {% if voting is not none and voting %}
   <section id="voting">
     <h2 class="section-title">Voting Decisions</h2>
     <div class="vote-list">
@@ -550,28 +609,39 @@
       {% endfor %}
     </div>
   </section>
+  {% endif %}
 
   <!-- ── Playoffs ── -->
+  {% if playoffs is not none and playoffs %}
   <section id="playoffs">
     <h2 class="section-title">Playoff Format</h2>
     <div class="playoff-info">
+      {% if playoffs.format %}
       <div class="info-box">
         <div class="label">📋 Format</div>
         <div class="value">{{ playoffs.format }}</div>
       </div>
+      {% endif %}
+      {% if playoffs.weeks %}
       <div class="info-box">
         <div class="label">📅 Weeks</div>
         <div class="value">{{ playoffs.weeks }}</div>
       </div>
+      {% endif %}
+      {% if playoffs.byes %}
       <div class="info-box">
         <div class="label">🛌 Byes</div>
         <div class="value">{{ playoffs.byes }}</div>
       </div>
+      {% endif %}
+      {% if playoffs.tiebreaker %}
       <div class="info-box">
         <div class="label">⚖️ Tiebreaker</div>
         <div class="value">{{ playoffs.tiebreaker }}</div>
       </div>
+      {% endif %}
     </div>
+    {% if playoffs.bracket %}
     <div class="bracket-list">
       {% for round in playoffs.bracket %}
       <div class="bracket-round">
@@ -582,9 +652,12 @@
       </div>
       {% endfor %}
     </div>
+    {% endif %}
   </section>
+  {% endif %}
 
   <!-- ── Champions ── -->
+  {% if champions is not none and champions %}
   <section id="champions">
     <h2 class="section-title">Past Champions</h2>
     <div class="table-wrap">
@@ -612,8 +685,10 @@
       </table>
     </div>
   </section>
+  {% endif %}
 
   <!-- ── Records ── -->
+  {% if records is not none and records %}
   <section id="records">
     <h2 class="section-title">League Records</h2>
     <div class="table-wrap">
@@ -639,6 +714,7 @@
       </table>
     </div>
   </section>
+  {% endif %}
 
 </main>
 
@@ -646,8 +722,12 @@
 <footer>
   <p>
     <strong>{{ league.name }}</strong> &mdash; {{ league.season }} Season
+    {% if league.commissioner %}
     &nbsp;|&nbsp; Commissioner: {{ league.commissioner }}
+    {% endif %}
+    {% if league.platform %}
     &nbsp;|&nbsp; Platform: {{ league.platform }}
+    {% endif %}
   </p>
   <p style="margin-top:0.4rem; color:#6ee7b7;">
     Last updated: {{ generated_on }}
