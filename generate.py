@@ -80,7 +80,6 @@ def main() -> None:
 
     print()
     print("✅  Done! Open docs/index.html in your browser to preview.")
-    print("📡  Push to GitHub and enable GitHub Pages (docs/ folder) to share.")
 
 
 if __name__ == "__main__":
