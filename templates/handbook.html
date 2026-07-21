@@ -577,7 +577,7 @@
     <h2 class="section-title">League Rules</h2>
     <div class="rules-list">
       {% for section in rules %}
-      <details class="rule-category" {% if loop.first %}open{% endif %}>
+      <details class="rule-category" {% if loop.first %}open=""{% endif %}>
         <summary class="rule-category-title">{{ section.category }}</summary>
         <div class="rule-category-content">
           <ul>
