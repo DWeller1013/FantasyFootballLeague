@@ -12,6 +12,7 @@ The output file (docs/index.html) is what GitHub Pages will serve publicly.
 
 import json
 import os
+import sys
 from datetime import datetime
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -241,12 +242,12 @@ def main() -> None:
         data = load_data(DATA_FILE)
     except json.JSONDecodeError as exc:
         print(f"❌  Invalid JSON        : {exc}")
-        raise SystemExit(1) from exc
+        sys.exit(1)
     try:
         validate_data(data)
     except ValidationError as exc:
         print(f"❌  Validation error   : {exc}")
-        raise SystemExit(1) from exc
+        sys.exit(1)
 
     league_name = data["league"]["name"]
     season      = data["league"]["season"]
