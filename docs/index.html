@@ -263,6 +263,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow: hidden;
+      border: none;
     }
 
     .rule-category-title {
@@ -271,22 +272,39 @@
       font-weight: 700;
       padding: 0.6rem 1rem;
       font-size: 0.95rem;
-    }
-
-    .rule-category ul {
+      cursor: pointer;
       list-style: none;
-      padding: 0.5rem 1rem 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .rule-category li {
+    .rule-category-title::-webkit-details-marker { display: none; }
+
+    .rule-category-title::after {
+      content: "＋";
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .rule-category[open] .rule-category-title::after { content: "－"; }
+
+    .rule-category-content { padding: 0.5rem 1rem 0.75rem; }
+
+    .rule-category-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .rule-category-content li {
       padding: 0.4rem 0;
       border-bottom: 1px solid var(--border);
       font-size: 0.92rem;
     }
 
-    .rule-category li:last-child { border-bottom: none; }
+    .rule-category-content li:last-child { border-bottom: none; }
 
-    .rule-category li::before {
+    .rule-category-content li::before {
       content: "✓ ";
       color: var(--green-light);
       font-weight: 700;
@@ -421,15 +439,22 @@
   
   <div class="hero-meta">
     <span class="badge">📅 Season 2026</span>
+    
     <span class="badge">👑 Commissioner: Devin Weller</span>
+    
+    
     <span class="badge">📱 Platform: ESPN</span>
+    
+    
     <span class="badge">🗓️ Founded 2025</span>
+    
   </div>
 </div>
 
 <main>
 
   <!-- ── Members ── -->
+  
   <section id="members">
     <h2 class="section-title">League Members</h2>
     <div class="members-grid">
@@ -496,37 +521,52 @@
       
     </div>
   </section>
+  
 
   <!-- ── Draft ── -->
+  
   <section id="draft">
     <h2 class="section-title">Draft Details</h2>
     <div class="draft-info">
+      
       <div class="info-box">
         <div class="label">📅 Date</div>
         <div class="value">August 24, 2026</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">🕖 Time</div>
         <div class="value">7:00 PM ET</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">📋 Type</div>
         <div class="value">Snake Draft</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">🔢 Rounds</div>
         <div class="value">15</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">⏱️ Seconds/Pick</div>
         <div class="value">90s</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">📍 Location</div>
         <div class="value">Grab your phone / ESPN App</div>
       </div>
+      
     </div>
 
+    
     <div class="table-wrap">
       <table>
         <thead>
@@ -591,13 +631,17 @@
       </table>
     </div>
     
+    
     <p class="note">📝 Draft order was determined by a random number.</p>
     
   </section>
+  
 
   <!-- ── Prizes ── -->
+  
   <section id="prizes">
     <h2 class="section-title">Prize Pool</h2>
+    
     <div class="prize-list">
       
       <div class="prize-row">
@@ -625,101 +669,125 @@
       </div>
       
     </div>
+    
+    
     <p class="prize-total">
-      Entry fee: $20 per team &nbsp;|&nbsp;
+      
+      Entry fee: $20 per team
+      
+      
+      &nbsp;|&nbsp;
+      
+      
       Total pool: <strong>$200</strong>
+      
     </p>
+    
     
     <p class="prize-notes">📝 All entry fees are due by draft day. No pay, no play. Prizes paid out within one week of the championship game.</p>
     
   </section>
+  
 
   <!-- ── Rules ── -->
+  
   <section id="rules">
     <h2 class="section-title">League Rules</h2>
     <div class="rules-list">
       
-      <div class="rule-category">
-        <div class="rule-category-title">📋 General</div>
-        <ul>
-          
-          <li>This is a 10-team, full-PPR (point per reception) league.</li>
-          
-          <li>Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.</li>
-          
-          <li>The top 6 teams advance to the playoffs.</li>
-          
-          <li>All roster moves must be made before the weekly NFL game lock.</li>
-          
-        </ul>
-      </div>
+      <details class="rule-category" open>
+        <summary class="rule-category-title">📋 General</summary>
+        <div class="rule-category-content">
+          <ul>
+            
+            <li>This is a 10-team, full-PPR (point per reception) league.</li>
+            
+            <li>Regular season runs Weeks 1–13. Playoffs run Weeks 14–17.</li>
+            
+            <li>The top 6 teams advance to the playoffs.</li>
+            
+            <li>All roster moves must be made before the weekly NFL game lock.</li>
+            
+          </ul>
+        </div>
+      </details>
       
-      <div class="rule-category">
-        <div class="rule-category-title">🏈 Roster</div>
-        <ul>
-          
-          <li>Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.</li>
-          
-          <li>Bench: 6 spots.</li>
-          
-          <li>IR spot: 1 spot (player must have official IR designation).</li>
-          
-          <li>Maximum of 2 players from any single NFL team on your active roster.</li>
-          
-        </ul>
-      </div>
+      <details class="rule-category" >
+        <summary class="rule-category-title">🏈 Roster</summary>
+        <div class="rule-category-content">
+          <ul>
+            
+            <li>Starting lineup: QB, RB, RB, WR, WR, TE, FLEX (RB/WR/TE), K, DST.</li>
+            
+            <li>Bench: 6 spots.</li>
+            
+            <li>IR spot: 1 spot (player must have official IR designation).</li>
+            
+            <li>Maximum of 2 players from any single NFL team on your active roster.</li>
+            
+          </ul>
+        </div>
+      </details>
       
-      <div class="rule-category">
-        <div class="rule-category-title">🔁 Trades</div>
-        <ul>
-          
-          <li>Trade deadline is the end of Week 10.</li>
-          
-          <li>All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.</li>
-          
-          <li>Trades process after a 24-hour review period unless vetoed.</li>
-          
-          <li>You may not trade draft picks.</li>
-          
-        </ul>
-      </div>
+      <details class="rule-category" >
+        <summary class="rule-category-title">🔁 Trades</summary>
+        <div class="rule-category-content">
+          <ul>
+            
+            <li>Trade deadline is the end of Week 10.</li>
+            
+            <li>All trades are reviewed by the commissioner for collusion. Obvious collusion results in a veto.</li>
+            
+            <li>Trades process after a 24-hour review period unless vetoed.</li>
+            
+            <li>You may not trade draft picks.</li>
+            
+          </ul>
+        </div>
+      </details>
       
-      <div class="rule-category">
-        <div class="rule-category-title">📥 Waivers</div>
-        <ul>
-          
-          <li>Waivers process every Wednesday at 4:00 AM ET.</li>
-          
-          <li>Waiver priority is continuous rolling: successful claims move you to last priority.</li>
-          
-          <li>Free agents (after waiver period) are first-come, first-served.</li>
-          
-          <li>You may not drop a player during an active game.</li>
-          
-        </ul>
-      </div>
+      <details class="rule-category" >
+        <summary class="rule-category-title">📥 Waivers</summary>
+        <div class="rule-category-content">
+          <ul>
+            
+            <li>Waivers process every Wednesday at 4:00 AM ET.</li>
+            
+            <li>Waiver priority is continuous rolling: successful claims move you to last priority.</li>
+            
+            <li>Free agents (after waiver period) are first-come, first-served.</li>
+            
+            <li>You may not drop a player during an active game.</li>
+            
+          </ul>
+        </div>
+      </details>
       
-      <div class="rule-category">
-        <div class="rule-category-title">🏆 Playoffs</div>
-        <ul>
-          
-          <li>Top 6 teams qualify for playoffs.</li>
-          
-          <li>Seeds 1 and 2 receive a first-round bye.</li>
-          
-          <li>Matchups: (3 vs 6) and (4 vs 5) in the first round.</li>
-          
-          <li>Championship game is played in Week 17.</li>
-          
-          <li>In the event of a playoff tie, the team with more total points for the season advances.</li>
-          
-        </ul>
-      </div>
+      <details class="rule-category" >
+        <summary class="rule-category-title">🏆 Playoffs</summary>
+        <div class="rule-category-content">
+          <ul>
+            
+            <li>Top 6 teams qualify for playoffs.</li>
+            
+            <li>Seeds 1 and 2 receive a first-round bye.</li>
+            
+            <li>Matchups: (3 vs 6) and (4 vs 5) in the first round.</li>
+            
+            <li>Championship game is played in Week 17.</li>
+            
+            <li>In the event of a playoff tie, the team with more total points for the season advances.</li>
+            
+          </ul>
+        </div>
+      </details>
       
     </div>
   </section>
+  
 
   <!-- ── Voting ── -->
+  
   <section id="voting">
     <h2 class="section-title">Voting Decisions</h2>
     <div class="vote-list">
@@ -771,28 +839,39 @@
       
     </div>
   </section>
+  
 
   <!-- ── Playoffs ── -->
+  
   <section id="playoffs">
     <h2 class="section-title">Playoff Format</h2>
     <div class="playoff-info">
+      
       <div class="info-box">
         <div class="label">📋 Format</div>
         <div class="value">6-team bracket, 4 weeks</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">📅 Weeks</div>
         <div class="value">Weeks 14–17</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">🛌 Byes</div>
         <div class="value">Seeds 1 and 2 receive a first-round bye (Week 14)</div>
       </div>
+      
+      
       <div class="info-box">
         <div class="label">⚖️ Tiebreaker</div>
         <div class="value">Total points scored during the regular season.</div>
       </div>
+      
     </div>
+    
     <div class="bracket-list">
       
       <div class="bracket-round">
@@ -821,9 +900,12 @@
       </div>
       
     </div>
+    
   </section>
+  
 
   <!-- ── Champions ── -->
+  
   <section id="champions">
     <h2 class="section-title">Past Champions</h2>
     <div class="table-wrap">
@@ -851,8 +933,10 @@
       </table>
     </div>
   </section>
+  
 
   <!-- ── Records ── -->
+  
   <section id="records">
     <h2 class="section-title">League Records</h2>
     <div class="table-wrap">
@@ -920,6 +1004,7 @@
       </table>
     </div>
   </section>
+  
 
 </main>
 
@@ -927,11 +1012,15 @@
 <footer>
   <p>
     <strong>No you Fantasy League 2026</strong> &mdash; 2026 Season
+    
     &nbsp;|&nbsp; Commissioner: Devin Weller
+    
+    
     &nbsp;|&nbsp; Platform: ESPN
+    
   </p>
   <p style="margin-top:0.4rem; color:#6ee7b7;">
-    Last updated: July 21, 2026 at 07:25 PM
+    Last updated: July 21, 2026 at 07:26 PM
   </p>
 </footer>
 
