@@ -217,8 +217,6 @@ def build_context(data: dict) -> dict:
 
 def render_template(data: dict, templates_dir: str) -> str:
     """Render the handbook template with the provided data."""
-    validate_data(data)
-
     env = Environment(
         loader=FileSystemLoader(templates_dir),
         autoescape=select_autoescape(["html"]),
