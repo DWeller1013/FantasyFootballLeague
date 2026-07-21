@@ -30,19 +30,23 @@ FantasyFootballLeague/
 | `templates/handbook.html` | HTML + CSS template. Jinja2 fills in the data placeholders. |
 | `docs/index.html` | The final generated webpage. GitHub Pages serves this publicly. |
 | `generate.py` | Reads the data, renders the template, writes `docs/index.html`. |
-| `requirements.txt` | Tells Python what packages to install (`pip install -r requirements.txt`). |
+| `requirements.txt` | Tells Python what packages to install (`python -m pip install -r requirements.txt`). |
 
 ---
 
 ## 🚀 Local Setup (Step by Step)
+
+> These instructions work for macOS, Linux, and Ubuntu-based WSL.
 
 ### 1. Prerequisites
 
 Make sure you have **Python 3.8+** installed. Check with:
 
 ```bash
-python --version
+python3 --version
 ```
+
+If your system also has a `python` command, that is fine too. In this guide, `python` commands are run from inside a virtual environment.
 
 ### 2. Clone the repository
 
@@ -56,20 +60,36 @@ cd FantasyFootballLeague
 A virtual environment keeps your project's dependencies separate from the rest of your system.
 
 ```bash
-python -m venv venv
-
-# On macOS/Linux:
-source venv/bin/activate
-
-# On Windows:
-venv\Scripts\activate
+python3 -m venv .venv
 ```
+
+Activate it:
+
+```bash
+# macOS/Linux/WSL
+source .venv/bin/activate
+```
+
+```powershell
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+```
+
+```bat
+:: Windows Command Prompt (cmd)
+.venv\Scripts\activate.bat
+```
+
+After activation, your shell prompt should show something like `(.venv)`.
 
 ### 4. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
 ```
+
+> Why this works better: some Linux/WSL installs block global `pip install` (PEP 668). Installing inside `.venv` avoids that problem.
 
 ### 5. Edit your league data
 
@@ -93,13 +113,43 @@ python generate.py
 
 ### 7. Preview locally
 
-Open `docs/index.html` in your web browser. On macOS:
+#### macOS
 
 ```bash
 open docs/index.html
 ```
 
-On Windows, just double-click `docs/index.html` in File Explorer.
+#### Linux desktop (with GUI browser installed)
+
+```bash
+xdg-open docs/index.html
+```
+
+#### WSL (Ubuntu on Windows)
+
+Use Windows to open the generated file:
+
+```bash
+explorer.exe docs/index.html
+```
+
+If needed, use an absolute Windows path:
+
+```bash
+explorer.exe "$(wslpath -w "$PWD/docs/index.html")"
+```
+
+#### Fallback option (works everywhere)
+
+Run a tiny local web server:
+
+```bash
+python -m http.server 8000 --directory docs
+```
+
+Then open:
+
+- `http://localhost:8000` (from your browser on the same machine)
 
 ---
 
@@ -149,6 +199,48 @@ Whenever you need to update the handbook (new draft order, rule changes, etc.):
    ```
 
 GitHub Pages will automatically redeploy your updated page within a minute.
+
+---
+
+## ❗ Common Troubleshooting
+
+### `Command 'python' not found`
+
+Use `python3` to create the environment:
+
+```bash
+python3 -m venv .venv
+```
+
+Then activate it and use `python ...` commands from inside `.venv`.
+
+### `error: externally-managed-environment` during `pip install`
+
+You are likely installing outside a virtual environment on Linux/WSL. Activate `.venv` and run:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### `py generate.py` fails on Linux/WSL
+
+Use:
+
+```bash
+python generate.py
+```
+
+The `py` launcher is mainly a Windows workflow and may behave differently on Linux.
+
+### `xdg-open` cannot open `docs/index.html` in WSL
+
+WSL usually has no Linux GUI browser installed. Use:
+
+```bash
+explorer.exe docs/index.html
+```
+
+or run a local server (`python -m http.server 8000 --directory docs`) and open `http://localhost:8000` in Windows.
 
 ---
 
